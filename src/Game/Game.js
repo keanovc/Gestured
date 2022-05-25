@@ -4,7 +4,6 @@ import * as tmImage from '@teachablemachine/image';
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 
-
 export default function Game() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
@@ -122,7 +121,7 @@ export default function Game() {
   }, [initialState]);
 
   return (
-    <section className="container d-flex align-items-center" style={{ height: '80vh' }}>
+    <section className="d-flex align-items-center" style={{ height: '80vh' }}>
       <div className="container text-center">
         <MutedText
           text="Rest assured. The video is only used in your local browser."
