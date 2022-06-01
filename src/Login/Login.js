@@ -16,9 +16,9 @@ function Login() {
     if (user) navigate("/dashboard");
   }, [user, loading]);
   return (
-    <div class="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-20 px-4">
-      <div class="flex flex-col items-center justify-center">
-          <div class="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10">
+    <div class="w-full px-4">
+      <div class="flex flex-col items-center justify-center h-screen">
+          <div class="bg-white shadow rounded-3xl lg:w-1/3  md:w-1/2 w-full p-10 bg-opacity-40 backdrop-filter backdrop-blur-lg">
               <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Login to your account</p>
               <p tabindex="0" class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Don't have an account? <Link to="/register">Register</Link> now.</p>
               <button aria-label="Continue with google" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10" onClick={signInWithGoogle}>
@@ -51,7 +51,7 @@ function Login() {
                     <Link to="/reset">Forgot Password</Link>
                   </div>
                   <div class="mt-8">
-                      <button role="button" onClick={() => logInWithEmailAndPassword(email, password)} class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
+                      <button role="button" onClick={() => logInWithEmailAndPassword(email, password)} class=" border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
                   </div>
               </div>
           </div>
