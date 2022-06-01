@@ -21,13 +21,13 @@ function Login() {
           <div class="bg-white shadow rounded-3xl lg:w-1/3  md:w-1/2 w-full p-10 bg-opacity-40 backdrop-filter backdrop-blur-lg">
               <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Login to your account</p>
               <p tabindex="0" class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Don't have an account? <Link to="/register">Register</Link> now.</p>
-              <button aria-label="Continue with google" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10" onClick={signInWithGoogle}>
+              <button aria-label="Continue with google" class="transition duration-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 bg-white flex items-center w-full mt-10" onClick={signInWithGoogle}>
                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt="google"/>
                   <p class="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
               </button>
               <div class="w-full flex items-center justify-between py-5 mt-5">
                   <hr class="w-full bg-gray-400"/>
-                  <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
+                  <p class="text-base font-medium leading-4 px-2.5 text-white">OR</p>
                   <hr class="w-full bg-gray-400"/>
                   </div>
                   <div>
@@ -51,7 +51,7 @@ function Login() {
                     <Link to="/reset">Forgot Password</Link>
                   </div>
                   <div class="mt-8">
-                      <button role="button" onClick={() => logInWithEmailAndPassword(email, password)} class=" border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
+                      <button role="button" onClick={() => logInWithEmailAndPassword(email, password)} class="transition duration-500 hover:scale-105 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
                   </div>
               </div>
           </div>

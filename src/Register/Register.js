@@ -12,23 +12,27 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
+
   const navigate = useNavigate();
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/dashboard");
   }, [user, loading]);
+
+
   return (
     <>
-    <div class="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-20 px-4">
-      <div class="flex flex-col items-center justify-center">
-          <div class="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10">
+    <div class="w-full px-4">
+      <div class="flex flex-col items-center justify-center h-screen">
+          <div class="bg-white shadow rounded-3xl lg:w-1/3  md:w-1/2 w-full p-10 bg-opacity-40 backdrop-filter backdrop-blur-lg">
               <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Register a new account</p>
               <p tabindex="0" class="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Already have an account? <Link to="/">Login</Link> now.</p>
-              <button aria-label="Continue with google" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10" onClick={signInWithGoogle}>
+              <button aria-label="Continue with google" class="transition duration-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 bg-white flex items-center w-full mt-10" onClick={signInWithGoogle}>
                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt="google"/>
                   <p class="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
               </button>
@@ -61,7 +65,7 @@ function Register() {
                     </div>
                   </div>
                   <div class="mt-8">
-                      <button role="button" onClick={register} class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Create my account</button>
+                      <button onClick={register} class="transition duration-500 hover:scale-105 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Create my account</button>
                   </div>
               </div>
           </div>
