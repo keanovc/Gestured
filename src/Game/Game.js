@@ -78,6 +78,8 @@ export default function Game() {
     };
   };
 
+  // wrap the loop function in usecallback to avoid re-rendering
+
   async function loop() {
     initialState.webcam.update(); // update the webcam frame
     // await predict();
@@ -122,7 +124,7 @@ export default function Game() {
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   useEffect(() => {
     if (!initialState.model || !initialState.webcam || !initialState.maxPredictions) {

@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) {
@@ -14,7 +14,7 @@ function Login() {
       return;
     }
     if (user) navigate("/dashboard");
-  }, [user, loading]);
+  }, [user, loading, navigate]);
   return (
     <div class="w-full px-4">
       <div class="flex flex-col items-center justify-center h-screen">
@@ -43,7 +43,7 @@ function Login() {
                     <div class="relative flex items-center justify-center">
                       <input id="pass" type="password" class="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" value={password} onChange={(e) => setPassword(e.target.value)}/>
                       <div class="absolute right-0 mt-2 mr-3 cursor-pointer">
-                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg" alt="viewport"/>                                    
+                        <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg5.svg" alt="viewport"/>
                       </div>
                     </div>
                   </div>
@@ -51,7 +51,7 @@ function Login() {
                     <Link to="/reset">Forgot Password</Link>
                   </div>
                   <div class="mt-8">
-                      <button role="button" onClick={() => logInWithEmailAndPassword(email, password)} class="transition duration-500 hover:scale-105 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
+                      <button type="button" onClick={() => logInWithEmailAndPassword(email, password)} class="transition duration-500 hover:scale-105 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login to my account</button>
                   </div>
               </div>
           </div>
