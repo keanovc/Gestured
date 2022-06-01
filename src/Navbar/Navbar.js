@@ -25,6 +25,13 @@ const Navbar = () => {
       fetchUserName();
     }, [user, loading]);
 
+    const [open, setOpen] = useState(false);
+
+    const toggleMenu = () => {
+      setOpen(!open);
+    };
+
+
 
   return (
     <nav class="flex items-center justify-between flex-wrap bg-black p-6 text-white bg-opacity-40 backdrop-filter backdrop-blur-lg">
