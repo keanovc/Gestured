@@ -15,14 +15,17 @@ import {
   collection,
   where,
   addDoc,
+  doc,
+  getDoc,
+  setDoc
 } from "firebase/firestore";
 const firebaseConfig = {
-    apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
-    authDomain: "iot-rpsls.firebaseapp.com",
-    projectId: "iot-rpsls",
-    storageBucket: "iot-rpsls.appspot.com",
-    messagingSenderId: "553938635613",
-    appId: "1:553938635613:web:6ca0e8f89a9a91333e76b4"
+  apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
+  authDomain: "iot-rpsls.firebaseapp.com",
+  projectId: "iot-rpsls",
+  storageBucket: "iot-rpsls.appspot.com",
+  messagingSenderId: "553938635613",
+  appId: "1:553938635613:web:6ca0e8f89a9a91333e76b4"
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -59,17 +62,34 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    await addDoc(collection(db, "users", user.uid), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
+      games: 0,
+      wins: 0,
+      created_at: new Date().toString(),
+      updated_at: null,
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
+const updateUser = async (win) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const docRef = doc(db, 'users', user.uid);
+  const docSnap = await getDoc(docRef);
+  if (win) {
+    await setDoc(docRef, { games: docSnap.games + 1 }, { wins: docSnap.wins + 1 }, { merge: true });
+  } else {
+    await setDoc(docRef, { games: docSnap.games + 1 }, { merge: true });
+  }
+
+}
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -82,6 +102,7 @@ const sendPasswordReset = async (email) => {
 const logout = () => {
   signOut(auth);
 };
+
 export {
   auth,
   db,
