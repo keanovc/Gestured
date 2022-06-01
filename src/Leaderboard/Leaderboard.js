@@ -17,19 +17,19 @@ export const Leaderboard = () => {
                     <td class="px-4 py-3">Smith</td>
                     <td class="px-4 py-3">50</td>
                     <td class="px-4 py-3">Male</td>
-                </tr>    
+                </tr>
                 <tr class="bg-gray-700 border-b border-gray-600">
                     <td class="px-4 py-3">Jill</td>
                     <td class="px-4 py-3">Smith</td>
                     <td class="px-4 py-3">50</td>
                     <td class="px-4 py-3">Male</td>
-                </tr>    
+                </tr>
                 <tr class="bg-gray-700 border-b border-gray-600">
                     <td class="px-4 py-3">Jill</td>
                     <td class="px-4 py-3">Smith</td>
                     <td class="px-4 py-3">50</td>
                     <td class="px-4 py-3">Male</td>
-                </tr>    
+                </tr>
             </table>
         </>
 
