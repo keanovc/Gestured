@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as tmImage from '@teachablemachine/image';
+import { EmojiProvider, Emoji } from 'react-apple-emojis'
+import emojiData from 'react-apple-emojis/src/data.json'
 
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
@@ -8,9 +10,18 @@ import Navbar from '../Navbar/Navbar';
 export default function Game() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
-    rock: '✊',
-    paper: '✋',
-    scissors: '✌',
+    rock:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="raised-fist" />
+    </EmojiProvider>,
+    paper:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="raised-hand" />
+    </EmojiProvider>,
+    scissors:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="hand-with-fingers-splayed" />
+    </EmojiProvider>,
   };
   const HAND_TO_NUMBER = {
     rock: 0,
@@ -119,7 +130,7 @@ export default function Game() {
     }
     window.requestAnimationFrame(loop);
     webcamRef.current.appendChild(initialState.webcam.canvas);
-  }, [initialState]);
+  }, [initialState, webcamRef, loop]);
 
   return (
     <>
@@ -154,7 +165,10 @@ export default function Game() {
             {` ${roundState.ai.result}`}
           </h5>
           <div>
-            <p className="text-2xl">{roundState.ai.emoji}</p>
+            <div className="flex justify-center">
+
+              {roundState.ai.emoji}
+            </div>
           </div>
         </div>
         <div>
