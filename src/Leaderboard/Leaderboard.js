@@ -1,5 +1,3 @@
-import ListGroup from 'react-bootstrap/ListGroup'
-
 export const Leaderboard = () => {
     return (
         <div id='leaderboard' className='flex column w-screen h-screen justify-center'>
