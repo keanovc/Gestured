@@ -5,6 +5,7 @@ import Register from './Register/Register';
 import Reset from './Reset/Reset';
 import Dashboard from './Dashboard/Dashboard';
 import Game from './Game/Game';
+import { Leaderboard } from './Leaderboard/Leaderboard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/reset" element={<Reset />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </Router>
     </div>

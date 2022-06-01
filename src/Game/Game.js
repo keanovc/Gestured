@@ -3,6 +3,7 @@ import * as tmImage from '@teachablemachine/image';
 
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
+import Navbar from '../Navabar/Navbar';
 
 export default function Game() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
@@ -121,6 +122,8 @@ export default function Game() {
   }, [initialState]);
 
   return (
+    <>
+    <Navbar />
     <section className="d-flex align-items-center" style={{ height: '80vh' }}>
       <div className="container text-center">
         <MutedText
@@ -166,5 +169,6 @@ export default function Game() {
         </div>
       </div>
     </section>
+    </>
   );
 }
