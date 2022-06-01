@@ -3,7 +3,7 @@ import * as tmImage from '@teachablemachine/image';
 
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
-import Navbar from '../Navabar/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 export default function Game() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';

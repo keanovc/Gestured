@@ -9,7 +9,11 @@ import { Leaderboard } from './Leaderboard/Leaderboard';
 
 function App() {
   return (
+<<<<<<< HEAD
     <div className="app from-[#EE7A6E] to-[#8D5EF0]">
+=======
+    <div className="app h-screen bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0]">
+>>>>>>> 8dafa719b3ecc5371413264bb7c76122e716ceee
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
