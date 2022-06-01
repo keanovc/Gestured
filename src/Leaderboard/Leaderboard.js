@@ -1,12 +1,37 @@
+import Navbar from "../Navbar/Navbar"
+
 export const Leaderboard = () => {
     return (
-        <div>
-            <div id='leaderboard' className='flex column w-screen h-screen justify-center'>
-                <div id='header' className='flex row w-4/5  h-16 justify-evenly rounded-t-2xl items-center bg-midnight text-ivory'>
-                    <div>Rank</div> <div>User</div> <div>Games played</div> <div>Games won</div> <div>win %</div>
-                </div>
-            </div >
-        </div>
+        <>
+            <Navbar />
+            <p class="text-lg text-center font-bold m-5">Leaderboard</p>
+            <table class="rounded-t-lg m-5 w-3/6 mx-auto bg-gray-800 text-gray-200">
+                <tr class="text-left border-b border-gray-300">
+                    <th class="px-4 py-3">Firstname</th>
+                    <th class="px-4 py-3">Lastname</th>
+                    <th class="px-4 py-3">Age</th>
+                    <th class="px-4 py-3">Sex</th>
+                </tr>
+                <tr class="bg-gray-700 border-b border-gray-600">
+                    <td class="px-4 py-3">Jill</td>
+                    <td class="px-4 py-3">Smith</td>
+                    <td class="px-4 py-3">50</td>
+                    <td class="px-4 py-3">Male</td>
+                </tr>    
+                <tr class="bg-gray-700 border-b border-gray-600">
+                    <td class="px-4 py-3">Jill</td>
+                    <td class="px-4 py-3">Smith</td>
+                    <td class="px-4 py-3">50</td>
+                    <td class="px-4 py-3">Male</td>
+                </tr>    
+                <tr class="bg-gray-700 border-b border-gray-600">
+                    <td class="px-4 py-3">Jill</td>
+                    <td class="px-4 py-3">Smith</td>
+                    <td class="px-4 py-3">50</td>
+                    <td class="px-4 py-3">Male</td>
+                </tr>    
+            </table>
+        </>
 
     )
 }
