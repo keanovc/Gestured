@@ -9,7 +9,7 @@ import { Leaderboard } from './Leaderboard/Leaderboard';
 
 function App() {
   return (
-    <div className="app">
+    <div className="app from-[#EE7A6E] to-[#8D5EF0]">
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
