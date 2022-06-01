@@ -43,77 +43,68 @@ function Dashboard() {
         </g>
       </svg>
     </div>
-    <section className="bg-white border-b py-8">
-      <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-        <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+    <section class="bg-white border-b py-8">
+      <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           Types of Games
-        </h1>
-        <div className="w-full mb-4">
-          <div className="h-1 mx-auto bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0] w-64 opacity-25 my-0 py-0 rounded-t"></div>
-        </div>
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div className="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p className="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-start">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
+      </h1>
+      <div class="w-full mb-20">
+          <div class="h-1 mx-auto bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0] w-64 opacity-25 my-0 py-0 rounded-t"></div>
+      </div>
+      <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div class="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+            </div>
+            <div class="text-center">
+              <h3 class="text-center text-4xl font-bold">User VS AI</h3>
+              <span class="text-sm">Local</span>
+            </div>
+            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
+              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
+              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            </ul>
+            <div class="text-center">
+              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div className="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p className="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-center">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div class="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+            </div>
+            <div class="text-center">
+              <h3 class="text-center text-4xl font-bold">User VS User</h3>
+              <span class="text-sm">Local</span>
+            </div>
+            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
+              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
+              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            </ul>
+            <div class="text-center">
+              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-              <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div className="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p className="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div className="flex items-center justify-end">
-              <button className="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div class="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+            </div>
+            <div class="text-center">
+              <h3 class="text-center text-4xl font-bold">User VS User</h3>
+              <span class="text-sm">Online</span>
+            </div>
+            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
+              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
+              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            </ul>
+            <div class="text-center">
+              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
