@@ -124,8 +124,8 @@ export default function Game() {
   return (
     <>
     <Navbar />
-    <section className="d-flex align-items-center" style={{ height: '80vh' }}>
-      <div className="container text-center">
+    <section className="flex items-center text-xl h-screen">
+      <div className="container mx-auto text-center">
         <MutedText
           text="Rest assured. The video is only used in your local browser."
         />
@@ -134,7 +134,7 @@ export default function Game() {
             You
             {` ${roundState.user.result}`}
           </h5>
-          <div className="card-body py-0">
+          <div className="card-body py-0 flex justify-center flex-col items-center">
             {!initialState.webcam ? (
               <LoadingIndicator
                 width={200}
@@ -153,14 +153,14 @@ export default function Game() {
             AI
             {` ${roundState.ai.result}`}
           </h5>
-          <div className="card-body">
+          <div className="card-body ">
             <p className="card-text h3">{roundState.ai.emoji}</p>
           </div>
         </div>
         <div className="my-3">
           <button
             type="button"
-            className="btn btn-primary btn-lg btn-block"
+            className="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 border-b-4 border-indigo-700 hover:border-indigo-500 rounded"
             disabled={!initialState.webcam}
             onClick={handleClick}
           >
