@@ -1,5 +1,10 @@
 import { imag } from "@tensorflow/tfjs";
+import { useState } from "react";
+import Navbar from "../Navbar/Navbar";
+import { RulesButton } from "../Design/RulesButton/RulesButton";
+import { RulesModal } from "../Design/RulesModal/RulesModal";
 import { db } from "../firebase"
+import LoadingIndicator from "./LoadingIndicator";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
@@ -14,6 +19,27 @@ const firebaseConfig = {
 
 
 export default function Multiplayer() {
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+    const [loading, setLoading] = useState(true);
+    const [roundState, setRoundState] = useState({
+        user: {
+            emoji: '',
+            result: '',
+        },
+        ai: {
+            emoji: '',
+            result: '',
+        },
+    });
+
+    const handleClick = () => {
+
+    };
 
     //Server config
     const servers = {
@@ -40,6 +66,7 @@ export default function Multiplayer() {
     // 1. Setup media sources
 
     const startLocalStream = async () => {
+        setLoading(false);
         localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
         remoteStream = new MediaStream();
 
@@ -146,37 +173,82 @@ export default function Multiplayer() {
     };
 
     return (
-        <div>
-            <div className="flex items-center justify-around flex-row">
-                <div className="flex items-center justify-evenly flex-col">
-                    <p className="text-white text-2xl font-semibold mb-4">You</p>
-                    <div className="w-[400px] h-[400px] rounded-full overflow-hidden bg-slate-400">
-                        <video className="w-full h-full object-cover" id='localFeed' autoPlay={true}>
-                        </video>
+        <>
+            <Navbar />
+            <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl w-full">
+                <div className="text-center flex items-center justify-between gap-20">
+                    <div className='w-1/2'>
+                        {/* <h5 className='my-5'>
+                You
+                {` ${roundState.user.result}`}
+              </h5> */}
+
+                        <div className="py-0 flex justify-center flex-col items-center gap-3">
+                            <div className='rounded-full overflow-hidden w-[400px] h-[400px]'>
+
+                                {loading ? (
+                                    <div className='bg-black w-[400px] h-[400px] flex justify-center items-center'>
+                                        <LoadingIndicator
+                                            width={200}
+                                            height={200}
+                                        />
+                                    </div>
+                                ) :
+                                    <video autoPlay={true} id='localFeed' className="h-full w-full object-cover" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className='w-1/2'>
+                        <div className="py-0 flex justify-center flex-col items-center gap-3">
+                            <div className='rounded-full overflow-hidden w-[400px] h-[400px]'>
+
+                                {!remoteStream ? (
+                                    <div className='bg-black w-[400px] h-[400px] flex justify-center items-center'>
+                                        <LoadingIndicator
+                                            width={200}
+                                            height={200}
+                                        />
+                                    </div>
+                                ) :
+                                    <video autoPlay={true} id='remoteFeed' />
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="flex items-center justify-evenly flex-col">
-                    <p className="text-white text-2xl font-semibold mb-4">Opponent</p>
-                    <div className="w-[400px] h-[400px] rounded-full overflow-hidden bg-slate-400">
-                        <video className="w-full h-full object-cover" id='remoteFeed' autoPlay={true}>
-                        </video>
+                <div className='grid grid-cols-2 mx-auto w-[880px] mt-10'>
+                    <div className='flex justify-center'>
+                        {roundState.user.emoji}
+                    </div>
+                    <div className='flex justify-center'>
+                        {roundState.ai.emoji}
                     </div>
                 </div>
-            </div>
+                <div>
+                    <button
+                        type="button"
+                        className="cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                        onClick={startLocalStream}
+                    >
+                        Play
+                    </button>
+                </div>
+                <div className="flex flex-row items-center">
+                    <button disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                        create room
+                    </button>
+                    <input disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-64 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "w-64 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
 
-            <button id="webcamButton" className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out " onClick={startLocalStream}>Start</button>
-            <h2>2. Create a new Call</h2>
-            <button id="callButton" onClick={createOffer}>Create Call (offer)</button>
+                    </input>
+                    <button disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                        join room
+                    </button>
+                </div>
+            </section>
 
-            <h2>3. Join a Call</h2>
-            <p>Answer the call from a different browser window or device</p>
-
-            <input id="callInput" />
-            <button id="answerButton" onClick={answer} >Answer</button>
-
-            <h2>4. Hangup</h2>
-
-            <button id="hangupButton" >Hangup</button>
-        </div >
+            <RulesButton text={'rules'} toggle={toggleModal} />
+            {showModal && <RulesModal text={'rules'} show={showModal} toggle={toggleModal} />}
+        </>
     );
 }
