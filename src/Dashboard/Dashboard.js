@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
+import LeaderboardImage from "../images/leaderboard.svg";
 
 function Dashboard() {
   return (
@@ -15,11 +16,9 @@ function Dashboard() {
           <p className="leading-normal text-2xl mb-8">
             Play your way through the game of rock paper scissors lizard spock. You can play against the computer or against another player.
           </p>
-          <Link to={'/game'}>
-            <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Play
-            </button>
-          </Link>
+          <a href="#modes" className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Play
+          </a>
         </div>
         <div className="w-2/6 py-10 text-center">
           <img className="w-full md:w-4/5 z-50" src="../../img/rock.png" alt="hands" />
@@ -45,7 +44,7 @@ function Dashboard() {
         </g>
       </svg>
     </div>
-    <section className="bg-white border-b py-8">
+    <section id="modes" className="bg-white border-b pt-16 pb-8">
       <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           Types of Games
       </h1>
@@ -54,62 +53,56 @@ function Dashboard() {
       </div>
       <div className="container mx-auto flex flex-wrap pt-4 pb-12">
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div className="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/robot1.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
-            </div>
-            <div className="text-center">
-              <h3 className="text-center text-4xl font-bold">User VS AI</h3>
-              <span className="text-sm">Local</span>
-            </div>
-            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
-              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
-              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
-            </ul>
-            <div className="text-center">
-              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
-            </div>
-          </div>
+            <Link to={'/modes/localcam'}>
+                <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+                    <div className="-mb-20 -translate-y-1/2 transform">
+                    <img src="../../img/robot1.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+                    </div>
+                    <div className="text-center">
+                    <h3 className="text-center text-4xl font-bold">User VS AI</h3>
+                    <span className="text-sm">Webcam</span>
+                    </div>
+                    <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Play your favorite game against the AI with your webcam!</h1>
+                    <div className="text-center">
+                    <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                    </div>
+                </div>
+            </Link>
         </div>
         <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div className="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/user.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+          <Link to={'/modes/localbuttons'}>
+            <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+                <div className="-mb-20 -translate-y-1/2 transform">
+                <img src="../../img/user.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+                </div>
+                <div className="text-center">
+                <h3 className="text-center text-4xl font-bold">User VS AI</h3>
+                <span className="text-sm">Buttons</span>
+                </div>
+                <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Don't you have a webcam? Then play this mode with very easy!</h1>
+                <div className="text-center">
+                <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                </div>
             </div>
-            <div className="text-center">
-              <h3 className="text-center text-4xl font-bold">User VS User</h3>
-              <span className="text-sm">Local</span>
-            </div>
-            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
-              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
-              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
-            </ul>
-            <div className="text-center">
-              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
-            </div>
-          </div>
+          </Link>
         </div>
-        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div className="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/wifi.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+        {/* <Link> */}
+            <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+                    <div className="-mb-20 -translate-y-1/2 transform">
+                    <img src="../../img/wifi.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+                    </div>
+                    <div className="text-center">
+                    <h3 className="text-center text-4xl font-bold">User VS User</h3>
+                    <span className="text-sm">Online</span>
+                    </div>
+                    <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Do you prefer to play with your friends online? Then choose this!</h1>
+                    <div className="text-center">
+                    <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                    </div>
+                </div>
             </div>
-            <div className="text-center">
-              <h3 className="text-center text-4xl font-bold">User VS User</h3>
-              <span className="text-sm">Online</span>
-            </div>
-            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
-              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
-              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
-            </ul>
-            <div className="text-center">
-              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
-            </div>
-          </div>
-        </div>
+        {/* </Link> */}
       </div>
     </section>
     <svg className="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -133,13 +126,7 @@ function Dashboard() {
         </g>
       </g>
     </svg>
-    <section className="container mx-auto text-center py-6 mb-12">
-      <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-        Call to Action
-      </h1>
-      <div className="w-full mb-4">
-        <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
-      </div>
+    <section className="container mx-auto text-center py-6 mb-12 flex justify-center items-center flex-col">
       <h3 className="my-4 text-3xl leading-tight">
         Check the leaderboard to see who is winning!
       </h3>

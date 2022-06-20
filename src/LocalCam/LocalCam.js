@@ -8,7 +8,7 @@ import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 
-export default function Game() {
+export default function LocalCam() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
     rock:
@@ -190,6 +190,8 @@ export default function Game() {
             play
           </button>
         </div>
+        <OutlineButton text={'rules'} toggle={toggleModal} />
+        {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
       </div>
     </section> */}
         <MutedText
