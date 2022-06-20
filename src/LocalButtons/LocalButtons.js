@@ -1,9 +1,9 @@
-import { Bottom } from "../Design/BottomContent"
+import { GameLayout } from "../Design/GameLayout/GameLayout"
 import Navbar from "../Navbar/Navbar"
-import { Header } from "../Design/HeaderContent"
+import { Score } from "../Design/Score/Score"
 import { useState } from "react"
-import { OutlineButton } from "../Design/OutlineButton"
-import { Modal } from "../Design/Modal"
+import { RulesButton } from "../Design/RulesButton/RulesButton"
+import { RulesModal } from "../Design/RulesModal/RulesModal"
 
 const LocalButtons = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,12 +16,12 @@ const LocalButtons = () => {
         <>
             <Navbar />
 
-            <Header />
+            <Score />
 
-            <Bottom />
+            <GameLayout />
 
-            <OutlineButton text={'rules'} toggle={toggleModal} />
-            {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
+            <RulesButton toggle={toggleModal} />
+            {showModal && <RulesModal text={'IDEA'} show={showModal} toggle={toggleModal} />}
         </>
     )
 }

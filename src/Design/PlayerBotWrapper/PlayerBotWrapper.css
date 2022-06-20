@@ -48,7 +48,7 @@
   background: #fff;
   text-align: center;
   border-radius: 50em;
-  border: 25px solid transparent;
+  border: 15px solid transparent;
   margin: 0 auto;
   box-shadow: 5px 10px 5px rgba(0,0,0,0.3) inset;
 }
@@ -78,6 +78,18 @@
   background:
   linear-gradient(#fff, #fff) padding-box,
   linear-gradient(to right, hsl(230, 89%, 62%) , hsl(230, 89%, 65%)) border-box;
+}
+
+.gameChoice#lizard {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(178, 89%, 62%) , hsl(182, 89%, 65%)) border-box;
+}
+
+.gameChoice#spock {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(281, 89%, 62%) , hsl(266, 89%, 65%)) border-box;
 }
 
 

@@ -1,0 +1,64 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+  padding-top: 150px;
+}
+
+.choicesWrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choice {
+  background: #fff;
+  text-align: center;
+  line-height: 120px;
+  cursor: pointer;
+  border-radius: 50em;
+  border: 10px solid transparent;
+  box-shadow: 5px 10px 5px rgba(0,0,0,0.3) inset;
+  margin: 20px;
+  padding: 50px;
+}
+
+.choice:hover img {
+  transform: scale(1.4);
+  transition: all .3s ease-in-out;
+}
+
+.choice img {
+  display: block;
+  transition: all .3s ease-in-out;
+}
+
+.choice#rock {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(349, 71%, 52%) , hsl(349, 70%, 56%)) border-box
+}
+
+.choice#scissors {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(39, 89%, 49%) , hsl(40, 84%, 53%)) border-box;
+}
+
+.choice#paper {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(230, 89%, 62%) , hsl(230, 89%, 65%)) border-box;
+}
+
+.choice#lizard {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(178, 89%, 62%) , hsl(182, 89%, 65%)) border-box;
+}
+
+.choice#spock {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(281, 89%, 62%) , hsl(266, 89%, 65%)) border-box;
+}

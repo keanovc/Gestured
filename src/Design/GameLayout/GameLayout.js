@@ -1,9 +1,9 @@
 import React from 'react';
 import { useAppContext } from '../../contexts/AppContext';
-import { ChoicesWrapper } from '../ChoicesWrapper';
-import { GameWrapper } from '../GameWrapper';
+import { ChoicesWrapper } from '../ChoicesWrapper/ChoicesWrapper';
+import { GameWrapper } from '../GameWrapper/GameWrapper';
 
-export const Bottom = () => {
+export const GameLayout = () => {
   const [AppState] = useAppContext();
 
   if (AppState.playerChoice) {

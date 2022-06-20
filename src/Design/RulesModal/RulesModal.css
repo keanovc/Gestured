@@ -28,6 +28,7 @@
 .modalWrapper .modalContainer .heading h1 {
   color: hsl(229, 25%, 31%);
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .modalWrapper .modalContainer .heading #closeIcon {

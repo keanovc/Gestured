@@ -1,10 +1,10 @@
 import React from 'react';
 import CloseIcon from '../../images/icon-close.svg';
 import Rules from '../../images/rules.webp';
-import './styles.css';
+import './RulesModal.css';
 import P from 'prop-types';
 
-export const Modal = ({ text, show, toggle }) => {
+export const RulesModal = ({ text, show, toggle }) => {
   return (
     <div className="modalWrapper">
       <div className="modalContainer">
@@ -20,7 +20,7 @@ export const Modal = ({ text, show, toggle }) => {
   );
 };
 
-Modal.propTypes = {
+RulesModal.propTypes = {
   text: P.string.isRequired,
   show: P.bool.isRequired,
   toggle: P.func.isRequired,
