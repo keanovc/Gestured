@@ -224,8 +224,9 @@ export default function LocalCam() {
           >
             Play
           </button>
-        </div>
-
+    </div>
+    <OutlineButton text={'rules'} toggle={toggleModal} />
+        {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
     </>
   );
 }
