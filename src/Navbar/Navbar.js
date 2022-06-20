@@ -19,6 +19,7 @@ const Navbar = () => {
       } catch (err) {
       }
     };
+    
     useEffect(() => {
       if (loading) return;
       if (!user) return navigate("/");

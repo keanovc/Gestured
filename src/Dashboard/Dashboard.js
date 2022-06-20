@@ -20,7 +20,7 @@ function Dashboard() {
           </button>
         </div>
         <div className="w-2/6 py-10 text-center">
-          <img className="w-full md:w-4/5 z-50" src="../../img/rock.png" />
+          <img className="w-full md:w-4/5 z-50" src="../../img/rock.png" alt="hands" />
         </div>
       </div>
     </div>
@@ -43,68 +43,68 @@ function Dashboard() {
         </g>
       </svg>
     </div>
-    <section class="bg-white border-b py-8">
-      <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+    <section className="bg-white border-b py-8">
+      <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           Types of Games
       </h1>
-      <div class="w-full mb-20">
-          <div class="h-1 mx-auto bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0] w-64 opacity-25 my-0 py-0 rounded-t"></div>
+      <div className="w-full mb-20">
+          <div className="h-1 mx-auto bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0] w-64 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
-      <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div class="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+      <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div className="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/robot1.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
             </div>
-            <div class="text-center">
-              <h3 class="text-center text-4xl font-bold">User VS AI</h3>
-              <span class="text-sm">Local</span>
+            <div className="text-center">
+              <h3 className="text-center text-4xl font-bold">User VS AI</h3>
+              <span className="text-sm">Local</span>
             </div>
-            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
-              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
-              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
+              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
+              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
             </ul>
-            <div class="text-center">
-              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+            <div className="text-center">
+              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div class="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div className="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/user.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
             </div>
-            <div class="text-center">
-              <h3 class="text-center text-4xl font-bold">User VS User</h3>
-              <span class="text-sm">Local</span>
+            <div className="text-center">
+              <h3 className="text-center text-4xl font-bold">User VS User</h3>
+              <span className="text-sm">Local</span>
             </div>
-            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
-              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
-              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
+              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
+              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
             </ul>
-            <div class="text-center">
-              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+            <div className="text-center">
+              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-            <div class="-mb-20 -translate-y-1/2 transform">
-              <img src="../../img/robot.png" alt="Kobe Bryant" title="Kobe Bryant" class="mx-auto h-48" />
+        <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div className="p-8 w-96 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+            <div className="-mb-20 -translate-y-1/2 transform">
+              <img src="../../img/wifi.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
             </div>
-            <div class="text-center">
-              <h3 class="text-center text-4xl font-bold">User VS User</h3>
-              <span class="text-sm">Online</span>
+            <div className="text-center">
+              <h3 className="text-center text-4xl font-bold">User VS User</h3>
+              <span className="text-sm">Online</span>
             </div>
-            <ul class="mt-16 mb-20 flex justify-center text-center text-2xl">
-              <li class="flex flex-col"><span class="font-bold">PTS</span> 25.00</li>
-              <li class="mx-6 flex flex-col"><span class="font-bold">AST</span> 4.7</li>
-              <li class="flex flex-col"><span class="font-bold">FG%</span> 44.7</li>
+            <ul className="mt-16 mb-20 flex justify-center text-center text-2xl">
+              <li className="flex flex-col"><span className="font-bold">PTS</span> 25.00</li>
+              <li className="mx-6 flex flex-col"><span className="font-bold">AST</span> 4.7</li>
+              <li className="flex flex-col"><span className="font-bold">FG%</span> 44.7</li>
             </ul>
-            <div class="text-center">
-              <button class="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+            <div className="text-center">
+              <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
             </div>
           </div>
         </div>
@@ -145,7 +145,13 @@ function Dashboard() {
         Leaderboard!
       </button>
     </section>
-
+    <footer class="flex flex-wrap items-center justify-between px-3 py-5 m-auto bg-gray-100 text-gray-700">
+        <div class="container mx-auto flex flex-col flex-wrap items-center justify-between">
+            <div class="flex mx-auto text-center">
+                Copyright Gestured © 2021
+            </div>
+        </div>
+    </footer>
     </>
   );
 }
