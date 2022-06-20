@@ -130,9 +130,14 @@ function Dashboard() {
       <h3 className="my-4 text-3xl leading-tight">
         Check the leaderboard to see who is winning!
       </h3>
-      <button className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-        Leaderboard!
-      </button>
+      <div className="py-12">
+        <img className="h-80" src={LeaderboardImage} alt="leaderboard" />
+      </div>
+      <Link to={'/leaderboard'}>
+        <button className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+          Leaderboard!
+        </button>
+      </Link>
     </section>
     <footer className="flex flex-wrap items-center justify-between px-3 py-5 m-auto bg-gray-100 text-gray-700">
         <div className="container mx-auto flex flex-col flex-wrap items-center justify-between">
