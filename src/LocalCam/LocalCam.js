@@ -9,6 +9,7 @@ import Navbar from '../Navbar/Navbar';
 import { RulesButton } from '../Design/RulesButton/RulesButton';
 import { RulesModal } from '../Design/RulesModal/RulesModal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
+import ConfettiComponent from '../Design/ConfettiComponent/ConfettiComponent';
 
 export default function Game() {
 
@@ -30,7 +31,7 @@ export default function Game() {
     </EmojiProvider>,
     scissors:
     <EmojiProvider data={emojiData}>
-      <Emoji name="hand-with-fingers-splayed" />
+      <Emoji name="victory-hand" />
     </EmojiProvider>,
   };
   const HAND_TO_NUMBER = {
@@ -64,7 +65,7 @@ export default function Game() {
       return 'Lose';
     }
     if ((leftNumber + 2) % 3 === rightNumber) {
-      return 'Win';
+      return <ConfettiComponent />;
     }
     return 'Draw';
   };
@@ -144,37 +145,39 @@ export default function Game() {
 
   return (
     <>
+    {roundState.user.result}
     <Navbar />
-    <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl h-screen">
-      <div className="container mx-auto text-center flex gap-3">
-        <div>
-          <h5 className='my-5'>
+    <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl w-full">
+      <div className="text-center flex items-center justify-between gap-20">
+        <div className='w-1/2'>
+          {/* <h5 className='my-5'>
             You
             {` ${roundState.user.result}`}
-          </h5>
+          </h5> */}
+
           <div className="py-0 flex justify-center flex-col items-center gap-3">
             {!initialState.webcam ? (
               <LoadingIndicator
                 width={200}
                 height={200}
               />
-            ) : null}
-            {/* <div ref={webcamRef} /> */}
-            <WebcamComponent />
+            ) :
+              <div className='rounded-full overflow-hidden'>
+                <WebcamComponent />
+              </div>
+            }
             <p className="text-2xl">{roundState.user.emoji}</p>
           </div>
         </div>
-        <p>
-          VS
-        </p>
-        <div>
-          <h5>
+        <div className='min-w-[400px] min-h-[400px]'>
+          {/* <h5>
             AI
             {` ${roundState.ai.result}`}
-          </h5>
-          <div>
-            <div className="flex justify-center">
+          </h5> */}
+          <img src="../../img/robot1.png" alt="AI" title="Kobe Bryant" className="w-full h-full object-fit" />
 
+          <div>
+            <div className="flex justify-center ">
               {roundState.ai.emoji}
             </div>
           </div>
@@ -187,7 +190,7 @@ export default function Game() {
             disabled={!initialState.webcam}
             onClick={handleClick}
           >
-            play
+            Play
           </button>
         </div>
     </section>

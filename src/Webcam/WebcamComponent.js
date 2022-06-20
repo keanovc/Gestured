@@ -1,17 +1,22 @@
 import React from 'react'
 import Webcam from 'react-webcam';
 
+
 export const WebcamComponent = ({webcamRef}) => {
+
+  const videoConstraints = {
+    width: 500,
+    height: 500,
+    facingMode: "user"
+ }
+
   return (
     <Webcam
-    height={400}
-    width={400}
+    height={'100%'}
+    width={'100%'}
     ref={webcamRef}
     screenshotFormat="image/jpeg"
-    videoConstraints={{
-      width: { min: 400, ideal: 400, max: 400 },
-      height: { min: 400, ideal: 400, max: 400 },
-    }}
+    videoConstraints={videoConstraints}
     mirrored={true}
     autoPlay={true}
     audio={false}
