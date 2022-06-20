@@ -11,7 +11,6 @@ export const RulesButton = ({ text, toggle }) => {
 };
 
 RulesButton.propTypes = {
-  text: P.string.isRequired,
   toggle: P.func.isRequired,
 };
 

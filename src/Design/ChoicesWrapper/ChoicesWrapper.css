@@ -54,11 +54,11 @@
 .choice#lizard {
   background:
   linear-gradient(#fff, #fff) padding-box,
-  linear-gradient(to right, hsl(136, 89%, 62%) , hsl(136, 89%, 65%)) border-box;
+  linear-gradient(to right, hsl(178, 89%, 62%) , hsl(182, 89%, 65%)) border-box;
 }
 
 .choice#spock {
   background:
   linear-gradient(#fff, #fff) padding-box,
-  linear-gradient(to right, hsl(303, 89%, 62%) , hsl(305, 89%, 65%)) border-box;
+  linear-gradient(to right, hsl(281, 89%, 62%) , hsl(266, 89%, 65%)) border-box;
 }

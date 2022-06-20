@@ -3,12 +3,10 @@ import * as actionsTypes from './actionsTypes';
 export const reducer = (state, action) => {
   switch (action.type) {
     case actionsTypes.PLAYER_CHOICE: {
-      console.log(action.payload);
       return { ...state, playerChoice: action.payload };
     }
     case actionsTypes.MACHINE_CHOICE: {
-      const choice = Math.floor(Math.random() * 3);
-      console.log('entrei no choice: ' + choice);
+      const choice = Math.floor(Math.random() * 5);
       switch (choice) {
         case 0:
           return { ...state, machineChoice: 'paper' };
@@ -19,6 +17,12 @@ export const reducer = (state, action) => {
         case 2:
           return { ...state, machineChoice: 'rock' };
 
+        case 3:
+          return { ...state, machineChoice: 'lizard' };
+
+        case 4:
+          return { ...state, machineChoice: 'spock' };
+
         default:
           return { ...state };
       }
@@ -28,18 +32,26 @@ export const reducer = (state, action) => {
       const machineChose = state.machineChoice;
       let currentScore = state.score;
 
-      if (playerChose === 'paper' && machineChose === 'rock') {
+      if (playerChose === 'scissor' && (machineChose === 'paper' || machineChose === 'lizard')) {
         const newScore = ++currentScore;
         localStorage.setItem('score', newScore);
         return { ...state, result: 'W', score: newScore };
-      } else if (playerChose === 'rock' && machineChose === 'scissor') {
+      } else if (playerChose === 'paper' && (machineChose === 'rock' || machineChose === 'spock')) {
         const newScore = ++currentScore;
         localStorage.setItem('score', newScore);
         return { ...state, result: 'W', score: newScore };
-      } else if (playerChose === 'scissor' && machineChose === 'paper') {
-        const newScore = ++currentScore;
-        localStorage.setItem('score', newScore);
-        return { ...state, result: 'W', score: newScore };
+      } else if (playerChose === 'rock' && (machineChose === 'lizard' || machineChose === 'scissor')) {
+          const newScore = ++currentScore;
+          localStorage.setItem('score', newScore);
+          return { ...state, result: 'W', score: newScore };
+      } else if (playerChose === 'lizard' && (machineChose === 'spock' || machineChose === 'paper')) {
+          const newScore = ++currentScore;
+          localStorage.setItem('score', newScore);
+          return { ...state, result: 'W', score: newScore };
+      } else if (playerChose === 'spock' && (machineChose === 'scissor' || machineChose === 'rock')) {
+          const newScore = ++currentScore;
+          localStorage.setItem('score', newScore);
+          return { ...state, result: 'W', score: newScore };
       } else if (playerChose == machineChose) {
         localStorage.setItem('score', currentScore);
         return { ...state, result: 'T', score: currentScore };
