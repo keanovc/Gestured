@@ -6,8 +6,16 @@ import emojiData from 'react-apple-emojis/src/data.json'
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
+import { Modal } from '../Design/Modal';
+import { OutlineButton } from '../Design/OutlineButton';
 
-export default function Game() {
+export default function LocalCam() {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
     rock:
@@ -181,6 +189,8 @@ export default function Game() {
             play
           </button>
         </div>
+        <OutlineButton text={'rules'} toggle={toggleModal} />
+        {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
       </div>
     </section>
     </>

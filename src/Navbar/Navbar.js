@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
     const location = useLocation();
@@ -44,8 +44,8 @@ const Navbar = () => {
           label: "Leaderboard",
       },
       {
-          href: "/game",
-          label: "Game",
+          href: "/modes",
+          label: "Modes",
       },
     ]; 
 
@@ -54,10 +54,9 @@ const Navbar = () => {
       <nav id="header" className="fixed w-full z-30 top-0 text-white bg-black bg-opacity-40 backdrop-filter backdrop-blur-lg">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="flex items-center uppercase">
-          <a className="text-indigo-500 no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex items-center" href="/">
+          <Link to={'/dashboard'} className="text-indigo-500 no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex items-center">
             <img className="w-56" src="../../img/glogo.svg" alt="logo" />
-
-          </a>
+          </Link>
         </div>
         <div className="block lg:hidden pr-4">
           <button onClick={toggleMenu} id="nav-toggle" className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
