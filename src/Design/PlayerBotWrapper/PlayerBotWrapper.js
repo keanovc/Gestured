@@ -4,11 +4,10 @@ import './PlayerBotWrapper.css';
 import P from 'prop-types';
 import { EmojiProvider, Emoji } from 'react-apple-emojis';
 import emojiData from 'react-apple-emojis/src/data.json'
-import Scissors from '../../images/icon-scissors.svg';
 
 export const GameChoice = ({ isMachine }) => {
-  const [AppState, actions] = useAppContext();
-  const { playerChoice, machineChoice, score, result } = AppState;
+  const [AppState] = useAppContext();
+  const { playerChoice, machineChoice } = AppState;
 
   const title = isMachine === false ? 'you picked' : 'the house picked';
 
@@ -65,7 +64,7 @@ export const GameChoice = ({ isMachine }) => {
         {isMachine === true && (
           machineChoice === 'rock'
             ? RPS_EMOJI.rock
-            : machineChoice === 'scissor'
+            : machineChoice === 'scissor' 
             ? RPS_EMOJI.scissors
             : machineChoice === 'paper'
             ? RPS_EMOJI.paper
