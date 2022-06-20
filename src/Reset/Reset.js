@@ -6,12 +6,12 @@ import { auth, sendPasswordReset } from "../firebase";
 
 function Reset() {
   const [email, setEmail] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/dashboard");
-  }, [user, loading]);
+  }, [user, loading, navigate]);
   return (
   <>
     <div class="w-full px-4">
@@ -27,7 +27,7 @@ function Reset() {
                   </div>
                   <div class="mt-8">
                       <button onClick={() => sendPasswordReset(email)} class="transition duration-500 hover:scale-105 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Send password reset email</button>
-                  </div>  
+                  </div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();
     const fetchUserName = async () => {
@@ -24,7 +24,7 @@ const Navbar = () => {
       if (loading) return;
       if (!user) return navigate("/");
       fetchUserName();
-    }, [user, loading]);
+    }, [user, loading, navigate, fetchUserName]);
 
     const [open, setOpen] = useState(false);
 

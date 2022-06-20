@@ -12,32 +12,11 @@ export const Leaderboard = ({ children }) => {
                         <th class="px-4 py-3">Name</th>
                         <th class="px-4 py-3">Games</th>
                         <th class="px-4 py-3">Wins</th>
-                        <th class="px-4 py-3">Wins</th>
+                        <th class="px-4 py-3">win%</th>
                     </tr>
                 </thead>
                 <tbody className="text-gray-200">
                     {children}
-                    <tr class="bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg border-b ">
-                        <td class="px-4 py-3">Jill</td>
-                        <td class="px-4 py-3">Smith</td>
-                        <td class="px-4 py-3">50</td>
-                        <td class="px-4 py-3">Male</td>
-                        <td class="px-4 py-3">Male</td>
-                    </tr>
-                    <tr class="border-b bg-black bg-opacity-60 backdrop-filter backdrop-blur-lg">
-                        <td class="px-4 py-3">Jill</td>
-                        <td class="px-4 py-3">Smith</td>
-                        <td class="px-4 py-3">50</td>
-                        <td class="px-4 py-3">Male</td>
-                        <td class="px-4 py-3">Male</td>
-                    </tr>
-                    <tr class=" bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg border-b ">
-                        <td class="px-4 py-3">Jill</td>
-                        <td class="px-4 py-3">Smith</td>
-                        <td class="px-4 py-3">50</td>
-                        <td class="px-4 py-3">Male</td>
-                        <td class="px-4 py-3">Male</td>
-                    </tr>
                     <tr class="text-gray-700">
                         <td class="py-3"></td>
                         <td class="px-4 py-3"></td>
