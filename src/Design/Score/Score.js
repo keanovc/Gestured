@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import './Score.css';
 import { useAppContext } from '../../contexts/AppContext';
+import { EmojiProvider, Emoji } from 'react-apple-emojis';
+import emojiData from 'react-apple-emojis/src/data.json'
 
 export const Score = () => {
   const [AppState, actions] = useAppContext();
+  const { score, result } = AppState;
   let scoreClass = AppState.result === 'W' ? 'won' : AppState.result === 'L' ? 'lost' : '';
   let isMounted = useRef(true);
 
@@ -21,7 +24,14 @@ export const Score = () => {
     <div className="headerWrapper">
       <div className={`scoreWrapper ${scoreClass}`}>
         <span>Score</span>
-        <h2>{AppState.score}</h2>
+        <div className='inline-flex items-center'>
+          <h2>{AppState.score}</h2>
+          { score >= 3 ?
+            <EmojiProvider data={emojiData}>
+              <Emoji className='w-8' name="fire" />
+            </EmojiProvider>
+          : null }
+        </div>
       </div>
     </div>
   );

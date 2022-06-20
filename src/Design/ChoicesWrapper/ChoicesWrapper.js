@@ -1,5 +1,4 @@
 import React from 'react';
-import Triangle from '../../images/bg-triangle.svg';
 import { useAppContext } from '../../contexts/AppContext';
 import './ChoicesWrapper.css';
 import { EmojiProvider, Emoji } from 'react-apple-emojis';
