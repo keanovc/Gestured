@@ -1,0 +1,128 @@
+.box {
+  flex-basis: 35%;
+  height: auto;
+  text-align: center;
+  position: relative;
+}
+
+.box.moveRight{
+  animation: MoveRight .7s forwards;
+}
+
+.box.moveLeft {
+  animation: MoveLeft .7s forwards;
+}
+
+@keyframes MoveLeft {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 60px;
+  }
+}
+
+@keyframes MoveRight {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: 60px;
+  }
+}
+
+.box h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.gameChoice {
+  width: 250px;
+  height: 250px;
+  background: #fff;
+  text-align: center;
+  border-radius: 50em;
+  border: 25px solid transparent;
+  margin: 0 auto;
+  box-shadow: 5px 10px 5px rgba(0,0,0,0.3) inset;
+}
+
+.gameChoice img {
+  width: 50%;
+  display: block;
+  margin: 20% auto;
+  text-align: center;
+}
+
+.gameChoice#rock {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(349, 71%, 52%) , hsl(349, 70%, 56%)) border-box;
+}
+
+
+.gameChoice#scissor {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(39, 89%, 49%) , hsl(40, 84%, 53%)) border-box;
+}
+
+
+.gameChoice#paper {
+  background:
+  linear-gradient(#fff, #fff) padding-box,
+  linear-gradient(to right, hsl(230, 89%, 62%) , hsl(230, 89%, 65%)) border-box;
+}
+
+
+@media (max-width: 768px) {
+  .box {
+    flex-basis: 48%;
+    height: auto;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+
+  }
+
+  .box.moveRight{
+    animation: none;
+    margin-right: 35px;
+  }
+
+  .box.moveLeft {
+    animation: none;
+    margin-left: 35px;
+  }
+
+  .box h1 {
+    margin-top: 20px;
+    white-space: nowrap;
+    font-size: 0.8em;
+  }
+
+  .gameChoice {
+    width: 125px;
+    height: 125px;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50em;
+    border: 15px solid transparent;
+    margin: 0 auto;
+  }
+
+  .gameChoice img {
+    width: 50%;
+    display: block;
+    margin: 20% auto;
+    text-align: center;
+  }
+}
