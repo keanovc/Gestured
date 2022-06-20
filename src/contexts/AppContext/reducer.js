@@ -52,7 +52,7 @@ export const reducer = (state, action) => {
           const newScore = ++currentScore;
           localStorage.setItem('score', newScore);
           return { ...state, result: 'W', score: newScore };
-      } else if (playerChose == machineChose) {
+      } else if (playerChose === machineChose) {
         localStorage.setItem('score', currentScore);
         return { ...state, result: 'T', score: currentScore };
       } else {

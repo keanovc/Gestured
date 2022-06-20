@@ -64,7 +64,7 @@ export const GameChoice = ({ isMachine }) => {
         {isMachine === true && (
           machineChoice === 'rock'
             ? RPS_EMOJI.rock
-            : machineChoice === 'scissor' 
+            : machineChoice === 'scissor'
             ? RPS_EMOJI.scissors
             : machineChoice === 'paper'
             ? RPS_EMOJI.paper

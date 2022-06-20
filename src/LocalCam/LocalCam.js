@@ -2,22 +2,21 @@ import React, { useEffect, useState, useRef } from 'react';
 import * as tmImage from '@teachablemachine/image';
 import { EmojiProvider, Emoji } from 'react-apple-emojis'
 import emojiData from 'react-apple-emojis/src/data.json'
-
-import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
 import { RulesButton } from '../Design/RulesButton/RulesButton';
 import { RulesModal } from '../Design/RulesModal/RulesModal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 import ConfettiComponent from '../Design/ConfettiComponent/ConfettiComponent';
+import { Result } from '../Design/Result/Result';
 
 export default function Game() {
 
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-    const toggleModal = () => {
-      setShowModal(!showModal);
-    };
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
@@ -33,16 +32,25 @@ export default function Game() {
     <EmojiProvider data={emojiData}>
       <Emoji name="victory-hand" />
     </EmojiProvider>,
+    lizard:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="pinching-hand" />
+    </EmojiProvider>,
+    spock:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="vulcan-salute" />
+    </EmojiProvider>,
   };
   const HAND_TO_NUMBER = {
     rock: 0,
     paper: 1,
     scissors: 2,
+    lizard: 3,
+    spock: 4,
   };
 
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
-    model: null,
     webcam: null,
     maxPredictions: null,
   });
@@ -57,9 +65,34 @@ export default function Game() {
     },
   });
 
+  const [score, setScore] = useState({ user: 0, ai: 0 });
+
   const calculateRoundResult = (leftHand, rightHand) => {
     const leftNumber = HAND_TO_NUMBER[leftHand];
     const rightNumber = HAND_TO_NUMBER[rightHand];
+
+    console.log(leftNumber, rightNumber);
+
+    if (leftNumber === 'scissor' && (rightNumber === 'paper' || rightNumber === 'lizard')) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    } else if (leftNumber === 'paper' && (rightNumber === 'rock' || rightNumber === 'spock')) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    } else if (leftNumber === 'rock' && (rightNumber === 'lizard' || rightNumber === 'scissor')) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    } else if (leftNumber === 'lizard' && (rightNumber === 'spock' || rightNumber === 'paper')) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    } else if (leftNumber === 'spock' && (rightNumber === 'scissor' || rightNumber === 'rock')) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    } else if (leftNumber === rightNumber) {
+      setScore(score => ({ ...score, user: score.user + 1 }));
+      localStorage.setItem('score', score);
+    }
+
 
     if ((leftNumber + 1) % 3 === rightNumber) {
       return 'Lose';
@@ -90,7 +123,7 @@ export default function Game() {
   };
 
   async function loop() {
-    initialState.webcam.update(); // update the webcam frame
+    initialState.webcam.update();
     // await predict();
     window.requestAnimationFrame(loop);
   }
@@ -195,6 +228,7 @@ export default function Game() {
             Play
           </button>
         </div>
+        <Result />
     </section>
 
     <RulesButton text={'rules'} toggle={toggleModal} />
