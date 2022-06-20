@@ -12,7 +12,7 @@ export const WebcamComponent = ({webcamRef}) => {
       width: { min: 400, ideal: 400, max: 400 },
       height: { min: 400, ideal: 400, max: 400 },
     }}
-    mirrored={false}
+    mirrored={true}
     autoPlay={true}
     audio={false}
     />

@@ -6,15 +6,18 @@ import emojiData from 'react-apple-emojis/src/data.json'
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
+import { OutlineButton } from '../Design/OutlineButton';
+import { Modal } from '../Design/Modal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 
-export default function LocalCam() {
-  const [showModal, setShowModal] = useState(false);
+export default function Game() {
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-  
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+      setShowModal(!showModal);
+    };
+
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
     rock:
@@ -85,11 +88,11 @@ export default function LocalCam() {
     };
   };
 
-  // async function loop() {
-  //   initialState.webcam.update(); // update the webcam frame
-  //   // await predict();
-  //   window.requestAnimationFrame(loop);
-  // }
+  async function loop() {
+    initialState.webcam.update(); // update the webcam frame
+    // await predict();
+    window.requestAnimationFrame(loop);
+  }
 
   const init = async () => {
     const modelURL = `${PROVIDED_MODEL_URL}model.json`;
@@ -111,11 +114,7 @@ export default function LocalCam() {
     });
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-  // const [webcamCanvas, setWebcamCanvas] = useState(null);
-
   const handleClick = async () => {
-    setIsLoading(true);
     const result = await predict();
     const userHand = result.prediction.className;
     const aiHand = result.classes[Math.floor(Math.random() * result.classes.length)];
@@ -129,7 +128,6 @@ export default function LocalCam() {
         result: calculateRoundResult(aiHand, userHand),
       },
     });
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -138,20 +136,17 @@ export default function LocalCam() {
 
   useEffect(() => {
     if (!initialState.model || !initialState.webcam || !initialState.maxPredictions) {
-      // setWebcamCanvas(true);
+      return;
     }
-    // window.requestAnimationFrame(loop);
+    window.requestAnimationFrame(loop);
     // webcamRef.current.appendChild(initialState.webcam.canvas);
-  }, [initialState, webcamRef]);
+  }, [initialState, webcamRef, loop]);
 
   return (
     <>
     <Navbar />
-    {/* <section className="flex items-center text-xl h-screen">
-      <div className="container mx-auto text-center flex flex-col gap-3">
-        <MutedText
-          text="The video is only used in your local browser."
-        />
+    <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl h-screen">
+      <div className="container mx-auto text-center flex gap-3">
         <div>
           <h5 className='my-5'>
             You
@@ -159,33 +154,32 @@ export default function LocalCam() {
           </h5>
           <div className="py-0 flex justify-center flex-col items-center gap-3">
             {!initialState.webcam ? (
-              <LoadingIndicator/>
+              <LoadingIndicator
+                width={200}
+                height={200}
+              />
             ) : null}
-            <div ref={webcamRef} />
+            {/* <div ref={webcamRef} /> */}
+            <WebcamComponent />
             <p className="text-2xl">{roundState.user.emoji}</p>
           </div>
         </div>
         <p>
           VS
         </p>
-        {
-          isLoading ? (
-            <LoadingIndicator />
-          ) : (
+        <div>
+          <h5>
+            AI
+            {` ${roundState.ai.result}`}
+          </h5>
           <div>
-            <h5>
-              AI
-              {` ${roundState.ai.result}`}
-            </h5>
-            <div>
-              <div className="flex justify-center">
+            <div className="flex justify-center">
 
-                {roundState.ai.emoji}
-              </div>
+              {roundState.ai.emoji}
             </div>
           </div>
-          )
-        }
+        </div>
+      </div>
         <div>
           <button
             type="button"
@@ -196,43 +190,11 @@ export default function LocalCam() {
             play
           </button>
         </div>
-        <OutlineButton text={'rules'} toggle={toggleModal} />
-        {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
-      </div>
-    </section> */}
-        <MutedText
-          text="The video is only used in your local browser."
-        />
+    </section>
 
-    <div className='flex'>
-      <div>
-      <h5 className='my-5'>
-            You
-            {` ${roundState.user.result}`}
-          </h5>
-          <div className="py-0 flex justify-center flex-col items-center gap-3">
-            {!initialState.webcam ? (
-              <LoadingIndicator/>
-            ) : null}
-            <WebcamComponent />
-
-            <div id="video"></div>
-            <p className="text-2xl">{roundState.user.emoji}</p>
-          </div>
-      </div>
-    </div>
-    <div>
-          <button
-            type="button"
-            className="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 border-b-4 border-indigo-700 hover:border-indigo-500 rounded"
-            disabled={!initialState.webcam}
-            onClick={handleClick}
-          >
-            Play
-          </button>
-    </div>
     <OutlineButton text={'rules'} toggle={toggleModal} />
-        {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
+    {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
+
     </>
   );
 }

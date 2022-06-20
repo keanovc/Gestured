@@ -14,3 +14,4 @@ OutlineButton.propTypes = {
   text: P.string.isRequired,
   toggle: P.func.isRequired,
 };
+
