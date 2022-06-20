@@ -1,23 +1,25 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   return (
     <>
-      <Navbar />
+    <Navbar />
     <div className="pt-36">
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center pb-10">
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p className="uppercase tracking-loose w-full">GESTURED</p>
           <h1 className="my-4 text-5xl font-bold leading-tight">
             ROCK PAPER SCISSORS LIZARD SPOCK
           </h1>
           <p className="leading-normal text-2xl mb-8">
             Play your way through the game of rock paper scissors lizard spock. You can play against the computer or against another player.
           </p>
-          <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Play
-          </button>
+          <Link to={'/game'}>
+            <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              Play
+            </button>
+          </Link>
         </div>
         <div className="w-2/6 py-10 text-center">
           <img className="w-full md:w-4/5 z-50" src="../../img/rock.png" alt="hands" />
@@ -145,9 +147,9 @@ function Dashboard() {
         Leaderboard!
       </button>
     </section>
-    <footer class="flex flex-wrap items-center justify-between px-3 py-5 m-auto bg-gray-100 text-gray-700">
-        <div class="container mx-auto flex flex-col flex-wrap items-center justify-between">
-            <div class="flex mx-auto text-center">
+    <footer className="flex flex-wrap items-center justify-between px-3 py-5 m-auto bg-gray-100 text-gray-700">
+        <div className="container mx-auto flex flex-col flex-wrap items-center justify-between">
+            <div className="flex mx-auto text-center">
                 Copyright Gestured © 2021
             </div>
         </div>

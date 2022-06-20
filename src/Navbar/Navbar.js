@@ -3,9 +3,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+    const location = useLocation();
 
     const [user, loading] = useAuthState(auth);
     const [name, setName] = useState("");
@@ -33,7 +34,20 @@ const Navbar = () => {
       console.log(open);
     };
 
-
+    let navItems = [
+      {
+          href: "/dashboard",
+          label: "Home",
+      },
+      {
+          href: "/leaderboard",
+          label: "Leaderboard",
+      },
+      {
+          href: "/game",
+          label: "Game",
+      },
+    ]; 
 
   return (
     <>
@@ -55,15 +69,15 @@ const Navbar = () => {
         </div>
         <div className={`w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20 ${!open ? 'hidden' : ''}`} id="nav-content">
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
-            <li className="mr-3">
-              <div className="inline-block py-2 px-4 text-white font-bold no-underline"><Link to={'/'}>Home</Link></div>
-            </li>
-            <li className="mr-3">
-              <div className="inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#"><Link to={'/game'}>Game</Link></div>
-            </li>
-            <li className="mr-3">
-              <div className="inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#"><Link to={'/leaderboard'}>Leaderboard</Link></div>
-            </li>
+              {navItems.map((navItem) => (
+                <li className="nav-item mr-10" key={navItem.href}>
+                    <NavLink
+                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-gray-400 hover:text-gray-900')}
+                        to={navItem.href}>
+                        {navItem.label}
+                    </NavLink>
+                </li>
+              ))}
           </ul>
           <button
             onClick={logout}
