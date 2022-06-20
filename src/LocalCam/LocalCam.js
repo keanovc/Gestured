@@ -156,37 +156,39 @@ export default function Game() {
           </h5> */}
 
           <div className="py-0 flex justify-center flex-col items-center gap-3">
-            {!initialState.webcam ? (
-              <LoadingIndicator
-                width={200}
-                height={200}
-              />
-            ) :
-              <div className='rounded-full overflow-hidden'>
-                <WebcamComponent />
-              </div>
-            }
-            <p className="text-2xl">{roundState.user.emoji}</p>
-          </div>
-        </div>
-        <div className='min-w-[400px] min-h-[400px]'>
-          {/* <h5>
-            AI
-            {` ${roundState.ai.result}`}
-          </h5> */}
-          <img src="../../img/robot1.png" alt="AI" title="Kobe Bryant" className="w-full h-full object-fit" />
+          <div className='rounded-full overflow-hidden w-[400px] h-[400px]'>
 
-          <div>
-            <div className="flex justify-center ">
-              {roundState.ai.emoji}
+            {!initialState.webcam ? (
+              <div className='bg-black w-[400px] h-[400px] flex justify-center items-center'>
+                <LoadingIndicator
+                  width={200}
+                  height={200}
+                />
+              </div>
+            ) :
+                <WebcamComponent />
+              }
             </div>
           </div>
+        </div>
+        <div className='w-1/2'>
+        <div className='w-[400px] h-[400px]'>
+          <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
+        </div>
+        </div>
+      </div>
+      <div className='grid grid-cols-2 mx-auto w-[880px] mt-10'>
+        <div className='flex justify-center'>
+          {roundState.user.emoji}
+        </div>
+        <div className='flex justify-center'>
+          {roundState.ai.emoji}
         </div>
       </div>
         <div>
           <button
             type="button"
-            className="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 border-b-4 border-indigo-700 hover:border-indigo-500 rounded"
+            className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
             disabled={!initialState.webcam}
             onClick={handleClick}
           >

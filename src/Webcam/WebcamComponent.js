@@ -5,8 +5,8 @@ import Webcam from 'react-webcam';
 export const WebcamComponent = ({webcamRef}) => {
 
   const videoConstraints = {
-    width: 500,
-    height: 500,
+    width: 400,
+    height: 400,
     facingMode: "user"
  }
 
