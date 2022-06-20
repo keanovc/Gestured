@@ -1,17 +1,19 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import WebcamComponent from "../Webcam/WebcamComponent"
+import { imag } from "@tensorflow/tfjs";
+import { db } from "../firebase"
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
+    authDomain: "iot-rpsls.firebaseapp.com",
+    projectId: "iot-rpsls",
+    storageBucket: "iot-rpsls.appspot.com",
+    messagingSenderId: "553938635613",
+    appId: "1:553938635613:web:6ca0e8f89a9a91333e76b4"
+};
+
+
+
 
 export default function Multiplayer() {
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
-        authDomain: "iot-rpsls.firebaseapp.com",
-        projectId: "iot-rpsls",
-        storageBucket: "iot-rpsls.appspot.com",
-        messagingSenderId: "553938635613",
-        appId: "1:553938635613:web:6ca0e8f89a9a91333e76b4"
-    };
 
     //Server config
     const servers = {
@@ -31,18 +33,14 @@ export default function Multiplayer() {
     let remoteStream = null;
 
     // HTML elements
-    // const webcamButton = document.getElementById('webcamButton');
-    // const webcamVideo = document.getElementById('webcamVideo');
-    // const callButton = document.getElementById('callButton');
-    // const callInput = document.getElementById('callInput');
-    // const answerButton = document.getElementById('answerButton');
-    // const remoteVideo = document.getElementById('remoteVideo');
-    // const hangupButton = document.getElementById('hangupButton');
+    const callInput = document.getElementById('callInput');
+
+    const hangupButton = document.getElementById('hangupButton');
 
     // 1. Setup media sources
 
     const startLocalStream = async () => {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
         remoteStream = new MediaStream();
 
         // Push tracks from local stream to peer connection
@@ -56,13 +54,11 @@ export default function Multiplayer() {
                 remoteStream.addTrack(track);
             });
         };
-
+        const webcamVideo = document.getElementById('localFeed');
         webcamVideo.srcObject = localStream;
-        remoteVideo.srcObject = remoteStream;
 
-        callButton.disabled = false;
-        answerButton.disabled = false;
-        webcamButton.disabled = true;
+        const remoteVideo = document.getElementById('remoteFeed');
+        remoteVideo.srcObject = remoteStream;
     };
 
     // 2. Create an offer
@@ -151,30 +147,36 @@ export default function Multiplayer() {
 
     return (
         <div>
-            <h2>1. Start your Webcam</h2>
-            <div class="videos">
-                <span>
-                    <h3>Local Stream</h3>
-                </span>
-                <span>
-                    <h3>Remote Stream</h3>
-                    <video id="remoteVideo" autoplay playsinline></video>
-                </span>
+            <div className="flex items-center justify-around flex-row">
+                <div className="flex items-center justify-evenly flex-col">
+                    <p className="text-white text-2xl font-semibold mb-4">You</p>
+                    <div className="w-[400px] h-[400px] rounded-full overflow-hidden bg-slate-400">
+                        <video className="w-full h-full object-cover" id='localFeed' autoPlay={true}>
+                        </video>
+                    </div>
+                </div>
+                <div className="flex items-center justify-evenly flex-col">
+                    <p className="text-white text-2xl font-semibold mb-4">Opponent</p>
+                    <div className="w-[400px] h-[400px] rounded-full overflow-hidden bg-slate-400">
+                        <video className="w-full h-full object-cover" id='remoteFeed' autoPlay={true}>
+                        </video>
+                    </div>
+                </div>
             </div>
 
-            <button id="webcamButton" onClick={startLocalStream}>Start webcam</button>
+            <button id="webcamButton" className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out " onClick={startLocalStream}>Start</button>
             <h2>2. Create a new Call</h2>
-            <button id="callButton" disabled onClick={createOffer}>Create Call (offer)</button>
+            <button id="callButton" onClick={createOffer}>Create Call (offer)</button>
 
             <h2>3. Join a Call</h2>
             <p>Answer the call from a different browser window or device</p>
 
             <input id="callInput" />
-            <button id="answerButton" onClick={answer} disabled>Answer</button>
+            <button id="answerButton" onClick={answer} >Answer</button>
 
             <h2>4. Hangup</h2>
 
-            <button id="hangupButton" disabled>Hangup</button>
-        </div>
+            <button id="hangupButton" >Hangup</button>
+        </div >
     );
 }
