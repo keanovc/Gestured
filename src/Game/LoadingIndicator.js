@@ -1,11 +1,12 @@
-import React from 'react';
+import { DotPulse } from '@uiball/loaders';
 
-export default function LoadingIndicator({ width, height }) {
+const LoadingIndicator = () => {
   return (
-    <div className="mx-auto d-flex justify-content-around align-items-center" style={{ width: `${width}px`, height: `${height}px` }}>
-      <div className="spinner-grow text-primary" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+    <div className="z-50 absolute left-1/2 top-1/3 transform -translate-x-1/2 -translate-y-1/2">
+      <DotPulse size={50} color="#ffffff" />
     </div>
+
   );
-}
+};
+
+export default LoadingIndicator

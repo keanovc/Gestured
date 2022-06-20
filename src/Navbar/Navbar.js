@@ -20,7 +20,7 @@ const Navbar = () => {
       } catch (err) {
       }
     };
-    
+
     useEffect(() => {
       if (loading) return;
       if (!user) return navigate("/");
@@ -47,7 +47,7 @@ const Navbar = () => {
           href: "/game",
           label: "Game",
       },
-    ]; 
+    ];
 
   return (
     <>
@@ -72,7 +72,7 @@ const Navbar = () => {
               {navItems.map((navItem) => (
                 <li className="nav-item mr-10" key={navItem.href}>
                     <NavLink
-                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-gray-400 hover:text-gray-900')}
+                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-gray-400 hover:text-gray-500 transition-all')}
                         to={navItem.href}>
                         {navItem.label}
                     </NavLink>

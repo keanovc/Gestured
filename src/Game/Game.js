@@ -6,6 +6,7 @@ import emojiData from 'react-apple-emojis/src/data.json'
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
+import { WebcamComponent } from '../Webcam/WebcamComponent';
 
 export default function Game() {
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
@@ -78,11 +79,11 @@ export default function Game() {
     };
   };
 
-  async function loop() {
-    initialState.webcam.update(); // update the webcam frame
-    // await predict();
-    window.requestAnimationFrame(loop);
-  }
+  // async function loop() {
+  //   initialState.webcam.update(); // update the webcam frame
+  //   // await predict();
+  //   window.requestAnimationFrame(loop);
+  // }
 
   const init = async () => {
     const modelURL = `${PROVIDED_MODEL_URL}model.json`;
@@ -104,7 +105,11 @@ export default function Game() {
     });
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+  // const [webcamCanvas, setWebcamCanvas] = useState(null);
+
   const handleClick = async () => {
+    setIsLoading(true);
     const result = await predict();
     const userHand = result.prediction.className;
     const aiHand = result.classes[Math.floor(Math.random() * result.classes.length)];
@@ -118,6 +123,7 @@ export default function Game() {
         result: calculateRoundResult(aiHand, userHand),
       },
     });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -126,16 +132,16 @@ export default function Game() {
 
   useEffect(() => {
     if (!initialState.model || !initialState.webcam || !initialState.maxPredictions) {
-      return;
+      // setWebcamCanvas(true);
     }
-    window.requestAnimationFrame(loop);
-    webcamRef.current.appendChild(initialState.webcam.canvas);
-  }, [initialState, webcamRef, loop]);
+    // window.requestAnimationFrame(loop);
+    // webcamRef.current.appendChild(initialState.webcam.canvas);
+  }, [initialState, webcamRef]);
 
   return (
     <>
     <Navbar />
-    <section className="flex items-center text-xl h-screen">
+    {/* <section className="flex items-center text-xl h-screen">
       <div className="container mx-auto text-center flex flex-col gap-3">
         <MutedText
           text="The video is only used in your local browser."
@@ -147,10 +153,7 @@ export default function Game() {
           </h5>
           <div className="py-0 flex justify-center flex-col items-center gap-3">
             {!initialState.webcam ? (
-              <LoadingIndicator
-                width={200}
-                height={200}
-              />
+              <LoadingIndicator/>
             ) : null}
             <div ref={webcamRef} />
             <p className="text-2xl">{roundState.user.emoji}</p>
@@ -159,18 +162,24 @@ export default function Game() {
         <p>
           VS
         </p>
-        <div>
-          <h5>
-            AI
-            {` ${roundState.ai.result}`}
-          </h5>
+        {
+          isLoading ? (
+            <LoadingIndicator />
+          ) : (
           <div>
-            <div className="flex justify-center">
+            <h5>
+              AI
+              {` ${roundState.ai.result}`}
+            </h5>
+            <div>
+              <div className="flex justify-center">
 
-              {roundState.ai.emoji}
+                {roundState.ai.emoji}
+              </div>
             </div>
           </div>
-        </div>
+          )
+        }
         <div>
           <button
             type="button"
@@ -182,7 +191,39 @@ export default function Game() {
           </button>
         </div>
       </div>
-    </section>
+    </section> */}
+        <MutedText
+          text="The video is only used in your local browser."
+        />
+
+    <div className='flex'>
+      <div>
+      <h5 className='my-5'>
+            You
+            {` ${roundState.user.result}`}
+          </h5>
+          <div className="py-0 flex justify-center flex-col items-center gap-3">
+            {!initialState.webcam ? (
+              <LoadingIndicator/>
+            ) : null}
+            <WebcamComponent />
+
+            <div id="video"></div>
+            <p className="text-2xl">{roundState.user.emoji}</p>
+          </div>
+      </div>
+    </div>
+    <div>
+          <button
+            type="button"
+            className="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 border-b-4 border-indigo-700 hover:border-indigo-500 rounded"
+            disabled={!initialState.webcam}
+            onClick={handleClick}
+          >
+            play
+          </button>
+        </div>
+
     </>
   );
 }
