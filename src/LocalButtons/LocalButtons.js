@@ -20,8 +20,8 @@ const LocalButtons = () => {
 
             <GameLayout />
 
-            <RulesButton text={'rules'} toggle={toggleModal} />
-            {showModal && <RulesModal text={'rules'} show={showModal} toggle={toggleModal} />}
+            <RulesButton toggle={toggleModal} />
+            {showModal && <RulesModal text={'IDEA'} show={showModal} toggle={toggleModal} />}
         </>
     )
 }

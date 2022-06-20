@@ -1,11 +1,11 @@
 import React from 'react';
-import './RulesButton.css';
 import P from 'prop-types';
+import Book from '../../images/book.png';
 
 export const RulesButton = ({ text, toggle }) => {
   return (
-    <button className="btnOutline" onClick={toggle}>
-      {text}
+    <button onClick={toggle} class="absolute right-10 bottom-10 flex p-2.5 transform transition duration-500 hover:scale-125 text-white">
+      <img src={Book} alt="book" className='w-16' />
     </button>
   );
 };
