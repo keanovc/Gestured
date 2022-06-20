@@ -9,6 +9,12 @@ import Navbar from '../Navbar/Navbar';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 
 export default function LocalCam() {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+  
   const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
   const RPS_EMOJI = {
     rock:
