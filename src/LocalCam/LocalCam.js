@@ -8,9 +8,12 @@ import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
 import { OutlineButton } from '../Design/OutlineButton';
 import { Modal } from '../Design/Modal';
-import { WebcamComponent } from '../Webcam/WebcamComponent';
+import { useWebcamContext } from '../Webcam/WebcamComponent';
 
 export default function Game() {
+
+  const { ref } = useWebcamContext();
+  console.log(ref);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -160,7 +163,7 @@ export default function Game() {
               />
             ) : null}
             {/* <div ref={webcamRef} /> */}
-            <WebcamComponent />
+            {/* <WebcamContainer /> */}
             <p className="text-2xl">{roundState.user.emoji}</p>
           </div>
         </div>
