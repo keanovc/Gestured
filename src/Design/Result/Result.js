@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../contexts/AppContext';
-import './styles.css';
+import './Result.css';
 
-export const ResultBox = () => {
+export const Result = () => {
   const [AppState, actions] = useAppContext();
   let gameResult = '';
 

@@ -6,8 +6,8 @@ import emojiData from 'react-apple-emojis/src/data.json'
 import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
-import { OutlineButton } from '../Design/OutlineButton';
-import { Modal } from '../Design/Modal';
+import { RulesButton } from '../Design/RulesButton/RulesButton';
+import { RulesModal } from '../Design/RulesModal/RulesModal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 
 export default function Game() {
@@ -192,8 +192,8 @@ export default function Game() {
         </div>
     </section>
 
-    <OutlineButton text={'rules'} toggle={toggleModal} />
-    {showModal && <Modal text={'rules'} show={showModal} toggle={toggleModal} />}
+    <RulesButton text={'rules'} toggle={toggleModal} />
+    {showModal && <RulesModal text={'rules'} show={showModal} toggle={toggleModal} />}
 
     </>
   );

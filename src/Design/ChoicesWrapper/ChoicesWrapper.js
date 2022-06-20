@@ -4,7 +4,7 @@ import Paper from '../../images/icon-paper.svg';
 import Scissors from '../../images/icon-scissors.svg';
 import Rock from '../../images/icon-rock.svg';
 import { useAppContext } from '../../contexts/AppContext';
-import './styles.css';
+import './ChoicesWrapper.css';
 
 export const ChoicesWrapper = () => {
   const [AppState, actions] = useAppContext();

@@ -1,8 +1,8 @@
 import React from 'react';
-import './styles.css';
+import './RulesButton.css';
 import P from 'prop-types';
 
-export const OutlineButton = ({ text, toggle }) => {
+export const RulesButton = ({ text, toggle }) => {
   return (
     <button className="btnOutline" onClick={toggle}>
       {text}
@@ -10,7 +10,7 @@ export const OutlineButton = ({ text, toggle }) => {
   );
 };
 
-OutlineButton.propTypes = {
+RulesButton.propTypes = {
   text: P.string.isRequired,
   toggle: P.func.isRequired,
 };

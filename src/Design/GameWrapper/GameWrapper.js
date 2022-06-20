@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppContext } from '../../contexts/AppContext';
-import './styles.css';
-import { ResultBox } from '../ResultBox';
-import { GameChoice } from '../PlayerChoiceWrapper';
+import './GameWrapper.css';
+import { Result } from '../Result/Result';
+import { GameChoice } from '../PlayerBotWrapper/PlayerBotWrapper';
 
 export const GameWrapper = () => {
   const [AppState, actions] = useAppContext();
@@ -21,7 +21,7 @@ export const GameWrapper = () => {
   return (
     <div className="boxesWrapper">
       <GameChoice isMachine={false} />
-      <ResultBox />
+      <Result />
       <GameChoice isMachine={true} />
     </div>
   );
