@@ -6,6 +6,7 @@ import Reset from './Reset/Reset';
 import Dashboard from './Dashboard/Dashboard';
 import Game from './Game/Game';
 import { Leaderboard } from './Leaderboard/Leaderboard';
+import Multiplayer from './Game/multiplayer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/game" element={<Game />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/multiplayer" element={<Multiplayer />} />
         </Routes>
       </Router>
     </div>
