@@ -1,31 +1,26 @@
 import React from 'react'
 import Webcam from 'react-webcam';
-import { createContext, useContext } from "react";
 
-const WebcamContext = createContext();
 
-const WebcamContainer = ({webcamRef}) => {
+export const WebcamComponent = ({webcamRef}) => {
+
+  const videoConstraints = {
+    width: 500,
+    height: 500,
+    facingMode: "user"
+ }
 
   return (
-    <WebcamContext.Provider value={{ ref: webcamRef }}>
-      <Webcam
-      height={400}
-      width={400}
-      ref={webcamRef}
-      screenshotFormat="image/jpeg"
-      videoConstraints={{
-        width: { min: 400, ideal: 400, max: 400 },
-        height: { min: 400, ideal: 400, max: 400 },
-      }}
-      mirrored={true}
-      autoPlay={true}
-      audio={false}
-      />
-    </WebcamContext.Provider>
+    <Webcam
+    height={'100%'}
+    width={'100%'}
+    ref={webcamRef}
+    screenshotFormat="image/jpeg"
+    videoConstraints={videoConstraints}
+    mirrored={true}
+    autoPlay={true}
+    audio={false}
+    />
+
   )
 }
-export const useWebcamContext = () => {
-  return useContext(WebcamContext);
-};
-
-export default WebcamContainer;

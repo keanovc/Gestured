@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppContext } from '../../contexts/AppContext';
-import { TripleCirclesEffect } from '../TripleCirclesEffect';
-import './styles.css';
+import './PlayerBotWrapper.css';
 import Paper from '../../images/icon-paper.svg';
 import Scissors from '../../images/icon-scissors.svg';
 import Rock from '../../images/icon-rock.svg';
@@ -52,18 +51,6 @@ export const GameChoice = ({ isMachine }) => {
                 : undefined
             }
           />
-        )}
-
-        {isMachine === false && result === 'W' && (
-          <>
-            <TripleCirclesEffect />
-          </>
-        )}
-
-        {isMachine === true && result === 'L' && (
-          <>
-            <TripleCirclesEffect />
-          </>
         )}
       </div>
     </div>
