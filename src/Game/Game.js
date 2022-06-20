@@ -220,7 +220,7 @@ export default function Game() {
             disabled={!initialState.webcam}
             onClick={handleClick}
           >
-            play
+            Play
           </button>
         </div>
 
