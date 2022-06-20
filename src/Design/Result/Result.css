@@ -30,27 +30,6 @@
   white-space: nowrap;
 }
 
-.playAgainBtn {
-  border: none;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 12px 40px;
-  border-radius: 7px;
-  cursor: pointer;
-  background: #fff;
-  border: 1px solid transparent;
-  color: hsl(229, 25%, 31%);
-  transition: .3s all ease-in-out ;
-  white-space: nowrap;
-}
-
-.playAgainBtn:hover {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  transition: .3s all ease-in-out ;
-}
-
 .playAgainBtn.lose {
   color: hsl(349, 71%, 52%);
 }

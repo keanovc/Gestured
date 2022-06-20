@@ -12,8 +12,6 @@ export const WebcamComponent = ({webcamRef}) => {
 
   return (
     <Webcam
-    height={'100%'}
-    width={'100%'}
     ref={webcamRef}
     screenshotFormat="image/jpeg"
     videoConstraints={videoConstraints}
