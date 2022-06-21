@@ -56,14 +56,8 @@ export const reducer = (state, action) => {
         localStorage.setItem('score', currentScore);
         return { ...state, result: 'T', score: currentScore };
       } else {
-        const newScore = --currentScore;
-
-        if (newScore === 0 || newScore < 0) {
-          localStorage.setItem('score', 0);
-          return { ...state, result: 'L', score: 0 };
-        }
-        localStorage.setItem('score', newScore);
-        return { ...state, result: 'L', score: newScore };
+        localStorage.setItem('score', 0);
+        return { ...state, result: 'L', score: 0 };
       }
     }
 

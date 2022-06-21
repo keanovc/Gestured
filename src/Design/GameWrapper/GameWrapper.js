@@ -6,7 +6,7 @@ import { GameChoice } from '../PlayerBotWrapper/PlayerBotWrapper';
 
 export const GameWrapper = () => {
   const [AppState, actions] = useAppContext();
-  const { playerChoice, machineChoice, score, result } = AppState;
+  const { score, result } = AppState;
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -19,10 +19,14 @@ export const GameWrapper = () => {
   }, [actions]);
 
   return (
-    <div className="boxesWrapper">
-      <GameChoice isMachine={false} />
-      <Result />
-      <GameChoice isMachine={true} />
-    </div>
+    <>
+      
+
+      <div className="boxesWrapper">
+        <GameChoice isMachine={false} />
+        <Result />
+        <GameChoice isMachine={true} />
+      </div>
+    </>
   );
 };

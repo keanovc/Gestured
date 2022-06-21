@@ -9,6 +9,7 @@ import { Leaderboard } from './Leaderboard/Leaderboard';
 import Modes from './Modes/Modes';
 import LocalButtons from './LocalButtons/LocalButtons';
 import { AppContextProvider } from './contexts/AppContext';
+import Multiplayer from './LocalCam/multiplayer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/modes/localcam" element={<LocalCam />} />
             <Route path="/modes/localbuttons" element={<LocalButtons />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/multiplayer" element={<Multiplayer />} />
           </Routes>
         </AppContextProvider>
       </Router>
