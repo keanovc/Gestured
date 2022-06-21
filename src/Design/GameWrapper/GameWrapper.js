@@ -19,9 +19,10 @@ export const GameWrapper = () => {
     };
   }, [actions]);
 
-  if (result === 'W') {
-    updateUser(score);
+  useEffect(() => {
+    updateUser(score, 'buttons', result);
   }
+  , [score, result]);
 
   return (
     <>

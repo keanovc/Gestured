@@ -17,7 +17,8 @@ import {
   addDoc,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  updateDoc
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
@@ -81,30 +82,37 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   }
 };
 
-const updateUser = async (win) => {
-  try {
-    const user = await getAuth(app).currentUser;
+const updateUser = async (win, game, result) => {
+  const user = await getAuth(app).currentUser;
     
-    const coll = await getDoc(doc(db, "users", user.uid));  
+  const coll = await getDoc(doc(db, "users", user.uid));
 
-    if (!coll.exists) {
-      await setDoc(doc(db, "users", user.uid), {
-        score: win,
-        updated_at: new Date().toString(),
-      });
+  if (!coll.exists()) {
+    if (game === "buttons") {
+      await setDoc(doc(db, "users", user.uid));
     }
-    
-    const scoreFirebase = coll.data().score;
-
-    if (scoreFirebase < win) {
-      await setDoc(doc(db, "users", user.uid), {
-        score: win,
-        updated_at: new Date().toString(),
-      });
-    }
+  }
   
-  } catch (err) {
-    console.error(err);
+  if (coll.exists()) {
+    if (result === 'W') {
+      if (game === "buttons") {
+        const scoreFirebase = coll.data().scoreButtons;
+  
+        if (scoreFirebase < win) {
+          await setDoc(doc(db, "users", user.uid), {
+            scoreButtons: win,
+            totalGamesButtons: coll.data().totalGamesButtons + 1,
+            updated_at: new Date().toString(),
+          });
+        }
+      }
+    }
+    else {
+      await updateDoc(doc(db, "users", user.uid), {
+        totalGamesButtons: coll.data().totalGamesButtons + 1,
+        updated_at: new Date().toString(),
+      });
+    }
   }
 }
 

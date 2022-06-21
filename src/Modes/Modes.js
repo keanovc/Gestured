@@ -2,6 +2,8 @@ import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 
 const Modes = () => {
+    localStorage.removeItem("score");
+
     return (
         <>
             <Navbar />
