@@ -1,10 +1,10 @@
-import { imag } from "@tensorflow/tfjs";
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { RulesButton } from "../Design/RulesButton/RulesButton";
 import { RulesModal } from "../Design/RulesModal/RulesModal";
 import { db } from "../firebase"
 import LoadingIndicator from "./LoadingIndicator";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
@@ -16,10 +16,8 @@ const firebaseConfig = {
 };
 
 
-
-
 export default function Multiplayer() {
-
+    const [roomCode, setRoomCode] = useState('');
     const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
@@ -91,15 +89,21 @@ export default function Multiplayer() {
     // 2. Create an offer
     const createOffer = async () => {
         // Reference Firestore collections for signaling
-        const callDoc = db.collection('calls').doc();
-        const offerCandidates = callDoc.collection('offerCandidates');
-        const answerCandidates = callDoc.collection('answerCandidates');
+        // const callDoc = db.collection('calls').doc();
+        // const offerCandidates = callDoc.collection('offerCandidates');
+        // const answerCandidates = callDoc.collection('answerCandidates');
+        const callDoc = await addDoc(collection(db, "calls"), {});
+        const offerCandidates = await addDoc(collection(callDoc, "offerCandidates"), {});
+        const answerCandidates = await addDoc(collection(callDoc, "anwserCandidates"), {});
 
-        callInput.value = callDoc.id;
+        setRoomCode(callDoc.id);
+
 
         // Get candidates for caller, save to db
-        pc.onicecandidate = (event) => {
-            event.candidate && offerCandidates.add(event.candidate.toJSON());
+        //event.candidate.toJSON()
+        pc.onicecandidate = async (event) => {
+            const docRef = doc(db, "calls", callDoc.id, "offerCandidates", offerCandidates.id);
+            event.candidate && await addDoc(doc(docRef), event.candidate.toJSON());
         };
 
         // Create offer
@@ -111,7 +115,7 @@ export default function Multiplayer() {
             type: offerDescription.type,
         };
 
-        await callDoc.set({ offer });
+        await setDoc(doc(db, 'calls', callDoc.id), { offer })
 
         // Listen for remote answer
         callDoc.onSnapshot((snapshot) => {
@@ -235,13 +239,13 @@ export default function Multiplayer() {
                     </button>
                 </div>
                 <div className="flex flex-row items-center">
-                    <button disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                    <button onClick={createOffer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
                         create room
                     </button>
-                    <input disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-64 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "w-64 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
+                    <input value={roomCode} disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition text-center' : "text-center w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
 
                     </input>
-                    <button disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                    <button onClick={answer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
                         join room
                     </button>
                 </div>
