@@ -21,7 +21,7 @@ export default function Game() {
       setShowModal(!showModal);
     };
 
-  const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/-RxweLcY_/';
+  const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/HqWW7SbIy/';
   const RPS_EMOJI = {
     rock:
     <EmojiProvider data={emojiData}>
@@ -35,11 +35,21 @@ export default function Game() {
     <EmojiProvider data={emojiData}>
       <Emoji name="victory-hand" />
     </EmojiProvider>,
+    lizard:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="pinching-hand" />
+    </EmojiProvider>,
+    spock:
+    <EmojiProvider data={emojiData}>
+      <Emoji name="vulcan-salute" />
+    </EmojiProvider>,
   };
   const HAND_TO_NUMBER = {
     rock: 0,
     paper: 1,
     scissors: 2,
+    lizard: 3,
+    spock: 4,
   };
 
   const webcamRef = useRef();
@@ -62,20 +72,30 @@ export default function Game() {
   const [score, setScore] = useState(0);
 
   const calculateRoundResult = (leftHand, rightHand) => {
-    const leftNumber = HAND_TO_NUMBER[leftHand];
-    const rightNumber = HAND_TO_NUMBER[rightHand];
+    // const leftNumber = HAND_TO_NUMBER[leftHand];
+    // const rightNumber = HAND_TO_NUMBER[rightHand];
 
-    if ((leftNumber + 1) % 3 === rightNumber) {
+    if (leftHand === 'scissor' && (rightHand === 'paper' || rightHand === 'lizard')) {
       setScore(score + 1);
-      localStorage.setItem('score', 0);
-      return 'Lose';
-    }
-    if ((leftNumber + 2) % 3 === rightNumber) {
-      setScore(0);
       localStorage.setItem('score', score);
-      return <ConfettiComponent />;
+    } else if (leftHand === 'paper' && (rightHand === 'rock' || rightHand === 'spock')) {
+      setScore(score + 1);
+      localStorage.setItem('score', score);
+    } else if (leftHand === 'rock' && (rightHand === 'lizard' || rightHand === 'scissor')) {
+      setScore(score + 1);
+      localStorage.setItem('score', score);
+    } else if (leftHand === 'lizard' && (rightHand === 'spock' || rightHand === 'paper')) {
+      setScore(score + 1);
+      localStorage.setItem('score', score);
+    } else if (leftHand === 'spock' && (rightHand === 'scissor' || rightHand === 'rock')) {
+      setScore(score + 1);
+      localStorage.setItem('score', score);
+    } else if (leftHand === rightHand) {
+      localStorage.setItem('score', score);
+    } else {
+      localStorage.setItem('score', 0);
     }
-    return 'Draw';
+  return 'Draw';
   };
 
   const predict = async () => {
