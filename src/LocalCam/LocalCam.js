@@ -2,16 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import * as tmImage from '@teachablemachine/image';
 import { EmojiProvider, Emoji } from 'react-apple-emojis'
 import emojiData from 'react-apple-emojis/src/data.json'
-
-import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
 import { RulesButton } from '../Design/RulesButton/RulesButton';
 import { RulesModal } from '../Design/RulesModal/RulesModal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 import ConfettiComponent from '../Design/ConfettiComponent/ConfettiComponent';
-import { Score } from '../Design/Score/Score';
-import { useAppContext } from '../contexts/AppContext';
 import LocalCamScore from './LocalCamScore';
 
 export default function Game() {
@@ -44,6 +40,7 @@ export default function Game() {
       <Emoji name="vulcan-salute" />
     </EmojiProvider>,
   };
+
   const HAND_TO_NUMBER = {
     rock: 0,
     paper: 1,
@@ -51,6 +48,7 @@ export default function Game() {
     lizard: 3,
     spock: 4,
   };
+
 
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
@@ -70,29 +68,40 @@ export default function Game() {
   });
 
   const [score, setScore] = useState(0);
+  const [result, setResult] = useState('');
 
-  const calculateRoundResult = (leftHand, rightHand) => {
-    // const leftNumber = HAND_TO_NUMBER[leftHand];
-    // const rightNumber = HAND_TO_NUMBER[rightHand];
-
-    if (leftHand === 'scissor' && (rightHand === 'paper' || rightHand === 'lizard')) {
+  const calculateRoundResult = (userHand, AIHand) => {
+    if (userHand === 'scissors' && (AIHand === 'paper' || AIHand === 'lizard')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
-    } else if (leftHand === 'paper' && (rightHand === 'rock' || rightHand === 'spock')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'paper' && (AIHand === 'rock' || AIHand === 'spock')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
-    } else if (leftHand === 'rock' && (rightHand === 'lizard' || rightHand === 'scissor')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'rock' && (AIHand === 'lizard' || AIHand === 'scissors')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
-    } else if (leftHand === 'lizard' && (rightHand === 'spock' || rightHand === 'paper')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'lizard' && (AIHand === 'spock' || AIHand === 'paper')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
-    } else if (leftHand === 'spock' && (rightHand === 'scissor' || rightHand === 'rock')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'spock' && (AIHand === 'scissors' || AIHand === 'rock')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
-    } else if (leftHand === rightHand) {
+      return <ConfettiComponent />;
+    } else if (userHand === AIHand) {
+      setResult('Tie');
       localStorage.setItem('score', score);
     } else {
+      setScore(0);
+      setResult('You lose!');
       localStorage.setItem('score', 0);
     }
   return 'Draw';
@@ -116,8 +125,7 @@ export default function Game() {
       classes: [...result.keys()],
     };
   };
-
-  async function loop() {
+  const loop = () => {
     initialState.webcam.update(); // update the webcam frame
     // await predict();
     window.requestAnimationFrame(loop);
@@ -154,7 +162,7 @@ export default function Game() {
       },
       ai: {
         emoji: RPS_EMOJI[aiHand],
-        result: calculateRoundResult(aiHand, userHand),
+        // result: calculateRoundResult(aiHand, userHand),
       },
     });
   };
@@ -199,19 +207,20 @@ export default function Game() {
               }
             </div>
           </div>
-        </div>
-        <div className='w-1/2'>
-        <div className='w-[400px] h-[400px]'>
-          <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
-        </div>
-        </div>
-      </div>
-      <div className='grid grid-cols-2 mx-auto w-[880px] mt-10'>
-        <div className='flex justify-center'>
+          <div className='flex justify-center mt-10 h-20'>
           {roundState.user.emoji}
+          </div>
         </div>
-        <div className='flex justify-center'>
-          {roundState.ai.emoji}
+        <h1 className='text-white text-5xl whitespace-nowrap w-80'>
+          {result}
+        </h1>
+        <div className='w-1/2'>
+          <div className='w-[400px] h-[400px]'>
+            <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
+          </div>
+          <div className='flex justify-center mt-10 h-20'>
+            {roundState.ai.emoji}
+          </div>
         </div>
       </div>
         <div>
