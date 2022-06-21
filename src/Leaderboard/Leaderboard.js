@@ -1,4 +1,4 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Emoji, EmojiProvider } from "react-apple-emojis";
 import emojiData from 'react-apple-emojis/src/data.json';
@@ -10,18 +10,13 @@ export const Leaderboard = ({ children }) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const getScores = async () => {
-            const q = query(collection(db, "users"));
-
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            const data = (users => [...users, doc.data()]);
-            setUsers(data(users));
-            });
-        }
-        getScores();
-    }, [setUsers]);
+        const colRef = collection(db, "users")
+        onSnapshot(colRef, (snapshot) => {
+            snapshot.docs.forEach((doc) => {
+                setUsers((prev) => [...prev, doc.data()])
+            })
+        })
+    }, []);
 
     console.log(users);
 
