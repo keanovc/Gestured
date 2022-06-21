@@ -16,12 +16,14 @@ export const Leaderboard = ({ children }) => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            setUsers(users => [...users, doc.data()]);
+            const data = (users => [...users, doc.data()]);
+            setUsers(data(users));
             });
-
         }
         getScores();
-    }, []);
+    }, [setUsers]);
+
+    console.log(users);
 
     return (
         <>
