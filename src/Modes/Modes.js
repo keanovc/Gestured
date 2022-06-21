@@ -8,7 +8,7 @@ const Modes = () => {
         <>
             <Navbar />
             <section id="modes" className="pt-32 pb-8">
-                <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+                <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
                     Types of Games
                 </h1>
                 <div className="w-full mb-20">

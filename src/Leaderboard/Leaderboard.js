@@ -1,6 +1,25 @@
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Emoji, EmojiProvider } from "react-apple-emojis";
+import emojiData from 'react-apple-emojis/src/data.json';
+import { db } from "../firebase"
 import Navbar from "../Navbar/Navbar"
 
 export const Leaderboard = ({ children }) => {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const colRef = collection(db, "users")
+        onSnapshot(colRef, (snapshot) => {
+            snapshot.docs.forEach((doc) => {
+                setUsers((prev) => [...prev, doc.data()])
+            })
+        })
+    }, []);
+
+    console.log(users);
+
     return (
         <>
             <Navbar />
@@ -10,20 +29,39 @@ export const Leaderboard = ({ children }) => {
                     <tr className="text-left border-b border-gray-300 rounded-t-lg">
                         <th className="px-4 py-3">#</th>
                         <th className="px-4 py-3">Name</th>
-                        <th className="px-4 py-3">Games</th>
-                        <th className="px-4 py-3">Wins</th>
-                        <th className="px-4 py-3">win%</th>
+                        <th className="px-4 py-3 flex justify-start items-center">
+                            Streak
+                            <div className="w-5 ml-2">
+                                <EmojiProvider data={emojiData}>
+                                <Emoji className='w-8' name="fire" />
+                                </EmojiProvider>
+                            </div>
+                        </th>
+                        <th className="px-4 py-3">Total games</th>
+                        <th className="px-4 py-3">Win %</th>
                     </tr>
                 </thead>
                 <tbody className="text-gray-200">
                     {children}
-                    <tr className="text-gray-700">
-                        <td className="py-3"></td>
+                        {
+                            users.map((user, index) => {
+                                return (
+                                    <tr className="text-gray-700" key={index}>
+                                        <td className="px-4 py-3">{index +1}</td>
+                                        <td className="px-4 py-3">{user.name}</td>
+                                        <td className="px-4 py-3">{user.scoreButtons}</td>
+                                        <td className="px-4 py-3">{user.totalGamesButtons}</td>
+                                        <td className="px-4 py-3">{(user.scoreButtons / user.totalGamesButtons) * 100}%</td>
+                                    </tr>
+                                )
+                            }
+                            )
+                        }
+                        {/* <td className="py-3"></td>
                         <td className="px-4 py-3"></td>
                         <td className="px-4 py-3"></td>
                         <td className="px-4 py-3"></td>
-                        <td className="px-4 py-3"></td>
-                    </tr>
+                        <td className="px-4 py-3"></td> */}
                 </tbody>
             </table>
         </>
