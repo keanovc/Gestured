@@ -21,11 +21,13 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/modes" element={<Modes />} />
-            <Route path="/modes/localcam" element={<LocalCam />} />
-            <Route path="/modes/localbuttons" element={<LocalButtons />} />
+            <Route path="/modes">
+              <Route index element={<Modes />} />
+              <Route path="/modes/localcam" element={<LocalCam />} />
+              <Route path="/modes/multiplayer" element={<Multiplayer />} />
+              <Route path="/modes/localbuttons" element={<LocalButtons />} />
+            </Route>
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/multiplayer" element={<Multiplayer />} />
           </Routes>
         </AppContextProvider>
       </Router>
