@@ -145,7 +145,9 @@ export default function Game() {
     });
   };
 
+
   const handleClick = async () => {
+
     const result = await predict();
     const userHand = result.prediction.className;
     const aiHand = result.classes[Math.floor(Math.random() * result.classes.length)];

@@ -90,6 +90,7 @@ export default function Multiplayer() {
         remoteVideo.srcObject = remoteStream;
     };
 
+
     // 2. Create an offer
     const createOffer = async () => {
         // Reference Firestore collections for signaling
