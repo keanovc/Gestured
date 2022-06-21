@@ -32,7 +32,7 @@ export const Result = () => {
     <div className="resultWrapper">
       <h1 className="title">{gameResult}</h1>
       <button className={`playAgainBtn mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out ${AppState.result === 'L' ? 'lose' : ''}`} onClick={() => actions.playAgain()}>
-        play again
+        Play again
       </button>
     </div>
   );

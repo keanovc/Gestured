@@ -71,28 +71,31 @@ export default function Game() {
 
   const [score, setScore] = useState(0);
 
-  const calculateRoundResult = (leftHand, rightHand) => {
-    // const leftNumber = HAND_TO_NUMBER[leftHand];
-    // const rightNumber = HAND_TO_NUMBER[rightHand];
-
-    if (leftHand === 'scissor' && (rightHand === 'paper' || rightHand === 'lizard')) {
+  const calculateRoundResult = (userHand, AIHand) => {
+    if (userHand === 'scissors' && (AIHand === 'paper' || AIHand === 'lizard')) {
       setScore(score + 1);
       localStorage.setItem('score', score);
-    } else if (leftHand === 'paper' && (rightHand === 'rock' || rightHand === 'spock')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'paper' && (AIHand === 'rock' || AIHand === 'spock')) {
       setScore(score + 1);
       localStorage.setItem('score', score);
-    } else if (leftHand === 'rock' && (rightHand === 'lizard' || rightHand === 'scissor')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'rock' && (AIHand === 'lizard' || AIHand === 'scissors')) {
       setScore(score + 1);
       localStorage.setItem('score', score);
-    } else if (leftHand === 'lizard' && (rightHand === 'spock' || rightHand === 'paper')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'lizard' && (AIHand === 'spock' || AIHand === 'paper')) {
       setScore(score + 1);
       localStorage.setItem('score', score);
-    } else if (leftHand === 'spock' && (rightHand === 'scissor' || rightHand === 'rock')) {
+      return <ConfettiComponent />;
+    } else if (userHand === 'spock' && (AIHand === 'scissors' || AIHand === 'rock')) {
       setScore(score + 1);
       localStorage.setItem('score', score);
-    } else if (leftHand === rightHand) {
+      return <ConfettiComponent />;
+    } else if (userHand === AIHand) {
       localStorage.setItem('score', score);
     } else {
+      setScore(0);
       localStorage.setItem('score', 0);
     }
   return 'Draw';
@@ -154,7 +157,7 @@ export default function Game() {
       },
       ai: {
         emoji: RPS_EMOJI[aiHand],
-        result: calculateRoundResult(aiHand, userHand),
+        // result: calculateRoundResult(aiHand, userHand),
       },
     });
   };

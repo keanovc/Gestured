@@ -54,7 +54,7 @@ const Navbar = () => {
       <nav id="header" className="fixed w-full z-30 top-0 text-white bg-black bg-opacity-40 backdrop-filter backdrop-blur-lg">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="flex items-center uppercase">
-          <Link to={'/dashboard'} className="text-indigo-500 no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex items-center">
+          <Link to={'/dashboard'} className="text-indigo-500 no-underline  font-bold text-2xl lg:text-4xl flex items-center">
             <img className="w-56" src="../../img/glogo.svg" alt="logo" />
           </Link>
         </div>
@@ -71,7 +71,7 @@ const Navbar = () => {
               {navItems.map((navItem) => (
                 <li className="nav-item mr-10" key={navItem.href}>
                     <NavLink
-                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-gray-400 hover:text-gray-500 transition-all')}
+                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-white transition-all')}
                         to={navItem.href}>
                         {navItem.label}
                     </NavLink>
