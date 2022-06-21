@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './Score.css';
 import { useAppContext } from '../../contexts/AppContext';
 import { EmojiProvider, Emoji } from 'react-apple-emojis';
-import emojiData from 'react-apple-emojis/src/data.json'
+import emojiData from 'react-apple-emojis/src/data.json';
 
 export const Score = () => {
   const [AppState, actions] = useAppContext();

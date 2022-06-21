@@ -20,8 +20,6 @@ export const GameWrapper = () => {
 
   return (
     <>
-      
-
       <div className="boxesWrapper">
         <GameChoice isMachine={false} />
         <Result />

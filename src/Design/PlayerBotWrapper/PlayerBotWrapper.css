@@ -5,34 +5,6 @@
   position: relative;
 }
 
-.box.moveRight{
-  animation: MoveRight .7s forwards;
-}
-
-.box.moveLeft {
-  animation: MoveLeft .7s forwards;
-}
-
-@keyframes MoveLeft {
-  from {
-    left: 0;
-  }
-
-  to {
-    left: 60px;
-  }
-}
-
-@keyframes MoveRight {
-  from {
-    right: 0;
-  }
-
-  to {
-    right: 60px;
-  }
-}
-
 .box h1 {
   color: #fff;
   text-transform: uppercase;

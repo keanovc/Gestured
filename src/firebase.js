@@ -27,6 +27,7 @@ const firebaseConfig = {
   messagingSenderId: "553938635613",
   appId: "1:553938635613:web:6ca0e8f89a9a91333e76b4"
 };
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -50,6 +51,7 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
+
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
@@ -58,6 +60,7 @@ const logInWithEmailAndPassword = async (email, password) => {
     alert(err.message);
   }
 };
+
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -77,19 +80,16 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     alert(err.message);
   }
 };
+
 const updateUser = async (win) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  const docRef = doc(db, 'users', user.uid);
-  const docSnap = await getDoc(docRef);
-  if (win) {
-    await setDoc(docRef, { games: docSnap.games + 1 }, { wins: docSnap.wins + 1 }, { merge: true });
-  } else {
-    await setDoc(docRef, { games: docSnap.games + 1 }, { merge: true });
+  try {
+    const user = await getAuth(app).currentUser;
+    console.log(user);
+  } catch (err) {
+    console.error(err);
   }
-
 }
+
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -99,6 +99,7 @@ const sendPasswordReset = async (email) => {
     alert(err.message);
   }
 };
+
 const logout = () => {
   signOut(auth);
 };
@@ -111,5 +112,6 @@ export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
+  updateUser,
   logout,
 };
