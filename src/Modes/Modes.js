@@ -17,7 +17,7 @@ const Modes = () => {
                         <Link to={'/modes/localcam'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                                 <div className="-mb-20 -translate-y-1/2 transform">
-                                <img src="../../img/robot1.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+                                <img src="../../img/robot1.png" alt="User vs AI" title="User vs AI" className="mx-auto h-48" />
                                 </div>
                                 <div className="text-center">
                                 <h3 className="text-center text-4xl font-bold">User VS AI</h3>
@@ -34,7 +34,7 @@ const Modes = () => {
                         <Link to={'/modes/localbuttons'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                                 <div className="-mb-20 -translate-y-1/2 transform">
-                                <img src="../../img/user.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
+                                <img src="../../img/user.png" alt="User VS AI" title="User VS AI" className="mx-auto h-48" />
                                 </div>
                                 <div className="text-center">
                                 <h3 className="text-center text-4xl font-bold">User VS AI</h3>
