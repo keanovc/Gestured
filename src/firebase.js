@@ -84,7 +84,25 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 const updateUser = async (win) => {
   try {
     const user = await getAuth(app).currentUser;
-    console.log(user);
+    
+    const coll = await getDoc(doc(db, "users", user.uid));  
+
+    if (!coll.exists) {
+      await setDoc(doc(db, "users", user.uid), {
+        score: win,
+        updated_at: new Date().toString(),
+      });
+    }
+    
+    const scoreFirebase = coll.data().score;
+
+    if (scoreFirebase < win) {
+      await setDoc(doc(db, "users", user.uid), {
+        score: win,
+        updated_at: new Date().toString(),
+      });
+    }
+  
   } catch (err) {
     console.error(err);
   }

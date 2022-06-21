@@ -3,6 +3,7 @@ import { useAppContext } from '../../contexts/AppContext';
 import './GameWrapper.css';
 import { Result } from '../Result/Result';
 import { GameChoice } from '../PlayerBotWrapper/PlayerBotWrapper';
+import { updateUser } from '../../firebase';
 
 export const GameWrapper = () => {
   const [AppState, actions] = useAppContext();
@@ -17,6 +18,10 @@ export const GameWrapper = () => {
       clearTimeout(timer);
     };
   }, [actions]);
+
+  if (result === 'W') {
+    updateUser(score);
+  }
 
   return (
     <>
