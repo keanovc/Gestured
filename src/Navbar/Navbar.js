@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="flex items-center uppercase">
           <Link to={'/dashboard'} className="text-indigo-500 no-underline  font-bold text-2xl lg:text-4xl flex items-center">
-            <img className="w-56" src="../../img/glogo.svg" alt="logo" />
+            <img className="w-56" src="../../img/gestured-logo.svg" alt="logo" />
           </Link>
         </div>
         <div className="block lg:hidden pr-4">
