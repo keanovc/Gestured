@@ -3,13 +3,14 @@ import { useAppContext } from '../../contexts/AppContext';
 import './PlayerBotWrapper.css';
 import P from 'prop-types';
 import { EmojiProvider, Emoji } from 'react-apple-emojis';
-import emojiData from 'react-apple-emojis/src/data.json'
+import emojiData from 'react-apple-emojis/src/data.json';
+import { updateUser } from '../../firebase';
 
 export const GameChoice = ({ isMachine }) => {
   const [AppState] = useAppContext();
-  const { playerChoice, machineChoice } = AppState;
+  const { playerChoice, machineChoice, score, result } = AppState;
 
-  const title = isMachine === false ? 'you picked' : 'the house picked';
+  const title = isMachine === false ? 'Your Choise' : "The AI's Choise";
 
   const RPS_EMOJI = {
     rock:
@@ -44,7 +45,7 @@ export const GameChoice = ({ isMachine }) => {
   }
 
   return (
-    <div className={`box ${isMachine === true ? 'moveLeft' : 'moveRight'}`}>
+    <div className='box'>
       <h1>{title}</h1>
       <div className="gameChoice" id={!isMachine ? playerChoice : machineChoice}>
         {isMachine === false && (
