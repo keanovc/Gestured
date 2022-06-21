@@ -10,10 +10,10 @@ function Dashboard() {
     <div className="pt-36">
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row justify-between items-center pb-10">
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <h1 className="my-4 text-5xl font-bold leading-tight">
+          <h1 className="my-4 text-5xl font-bold leading-tight text-white">
             ROCK PAPER SCISSORS LIZARD SPOCK
           </h1>
-          <p className="leading-normal text-2xl mb-8">
+          <p className="leading-normal text-2xl mb-8 text-white">
             Play your way through the game of rock paper scissors lizard spock. You can play against the computer or against another player.
           </p>
           <a href="#modes" className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -86,8 +86,8 @@ function Dashboard() {
             </div>
           </Link>
         </div>
-        {/* <Link> */}
             <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <Link to={"/modes/multiplayer"}>
                 <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                     <div className="-mb-20 -translate-y-1/2 transform">
                     <img src="../../img/wifi.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
@@ -101,8 +101,8 @@ function Dashboard() {
                     <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
                     </div>
                 </div>
+        </Link>
             </div>
-        {/* </Link> */}
       </div>
     </section>
     <svg className="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg">

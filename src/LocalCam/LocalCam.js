@@ -41,14 +41,7 @@ export default function Game() {
     </EmojiProvider>,
   };
 
-  const HAND_TO_NUMBER = {
-    rock: 0,
-    paper: 1,
-    scissors: 2,
-    lizard: 3,
-    spock: 4,
-  };
-
+  const [isLoading, setIsLoading] = useState(true);
 
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
@@ -104,7 +97,8 @@ export default function Game() {
       setResult('You lose!');
       localStorage.setItem('score', 0);
     }
-  return 'Draw';
+    return 'Draw';
+
   };
 
   const predict = async () => {
@@ -208,7 +202,7 @@ export default function Game() {
             </div>
           </div>
           <div className='flex justify-center mt-10 h-20'>
-          {roundState.user.emoji}
+            { roundState.user.emoji }
           </div>
         </div>
         <h1 className='text-white text-5xl whitespace-nowrap w-80'>
