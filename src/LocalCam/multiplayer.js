@@ -5,6 +5,8 @@ import { RulesModal } from "../Design/RulesModal/RulesModal";
 import { db } from "../firebase"
 import LoadingIndicator from "./LoadingIndicator";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import axios from "axios";
+import { data } from "autoprefixer";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA4hhoiITIagcoUyxaGUYxlts6VZp2LL2A",
@@ -106,8 +108,8 @@ export default function Multiplayer() {
         // Get candidates for caller, save to db
         //event.candidate.toJSON()
         pc.onicecandidate = async (event) => {
-            const docRef = doc(db, "calls", callDoc.id, "offerCandidates", offerCandidates.id);
-            event.candidate && await addDoc(doc(docRef), event.candidate.toJSON());
+            let data = event.candidate.toJSON();
+            event.candidate && await offerCandidates.addDoc(data);
         };
 
         // Create offer
