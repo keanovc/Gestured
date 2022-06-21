@@ -39,6 +39,10 @@ export default function Multiplayer() {
 
     };
 
+    const handleChange = (e) => {
+        setRoomCode(e.target.value);
+    }
+
     //Server config
     const servers = {
         iceServer: [
@@ -242,7 +246,7 @@ export default function Multiplayer() {
                     <button onClick={createOffer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
                         create room
                     </button>
-                    <input value={roomCode} disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition text-center' : "text-center w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
+                    <input onChange={handleChange} value={roomCode} disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition text-center' : "text-center w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
 
                     </input>
                     <button onClick={answer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
