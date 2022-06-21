@@ -2,16 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import * as tmImage from '@teachablemachine/image';
 import { EmojiProvider, Emoji } from 'react-apple-emojis'
 import emojiData from 'react-apple-emojis/src/data.json'
-
-import MutedText from './MutedText';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from '../Navbar/Navbar';
 import { RulesButton } from '../Design/RulesButton/RulesButton';
 import { RulesModal } from '../Design/RulesModal/RulesModal';
 import { WebcamComponent } from '../Webcam/WebcamComponent';
 import ConfettiComponent from '../Design/ConfettiComponent/ConfettiComponent';
-import { Score } from '../Design/Score/Score';
-import { useAppContext } from '../contexts/AppContext';
 import LocalCamScore from './LocalCamScore';
 
 export default function Game() {
@@ -44,14 +40,6 @@ export default function Game() {
       <Emoji name="vulcan-salute" />
     </EmojiProvider>,
   };
-  const HAND_TO_NUMBER = {
-    rock: 0,
-    paper: 1,
-    scissors: 2,
-    lizard: 3,
-    spock: 4,
-  };
-
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
     model: null,
@@ -70,32 +58,40 @@ export default function Game() {
   });
 
   const [score, setScore] = useState(0);
+  const [result, setResult] = useState('');
 
   const calculateRoundResult = (userHand, AIHand) => {
     if (userHand === 'scissors' && (AIHand === 'paper' || AIHand === 'lizard')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'paper' && (AIHand === 'rock' || AIHand === 'spock')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'rock' && (AIHand === 'lizard' || AIHand === 'scissors')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'lizard' && (AIHand === 'spock' || AIHand === 'paper')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'spock' && (AIHand === 'scissors' || AIHand === 'rock')) {
       setScore(score + 1);
+      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === AIHand) {
+      setResult('Tie');
       localStorage.setItem('score', score);
     } else {
       setScore(0);
+      setResult('You lose!');
       localStorage.setItem('score', 0);
     }
   return 'Draw';
@@ -119,8 +115,7 @@ export default function Game() {
       classes: [...result.keys()],
     };
   };
-
-  async function loop() {
+  const loop = () => {
     initialState.webcam.update(); // update the webcam frame
     // await predict();
     window.requestAnimationFrame(loop);
@@ -202,7 +197,13 @@ export default function Game() {
               }
             </div>
           </div>
+          <div className='flex justify-center'>
+          {roundState.user.emoji}
+          </div>
         </div>
+        <h1 className='text-white text-5xl whitespace-nowrap'>
+          {result}
+        </h1>
         <div className='w-1/2'>
         <div className='w-[400px] h-[400px]'>
           <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
