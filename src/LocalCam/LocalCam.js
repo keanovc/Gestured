@@ -40,6 +40,16 @@ export default function Game() {
       <Emoji name="vulcan-salute" />
     </EmojiProvider>,
   };
+
+  const HAND_TO_NUMBER = {
+    rock: 0,
+    paper: 1,
+    scissors: 2,
+    lizard: 3,
+    spock: 4,
+  };
+
+
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
     model: null,
@@ -197,25 +207,20 @@ export default function Game() {
               }
             </div>
           </div>
-          <div className='flex justify-center'>
+          <div className='flex justify-center mt-10 h-20'>
           {roundState.user.emoji}
           </div>
         </div>
-        <h1 className='text-white text-5xl whitespace-nowrap'>
+        <h1 className='text-white text-5xl whitespace-nowrap w-80'>
           {result}
         </h1>
         <div className='w-1/2'>
-        <div className='w-[400px] h-[400px]'>
-          <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
-        </div>
-        </div>
-      </div>
-      <div className='grid grid-cols-2 mx-auto w-[880px] mt-10'>
-        <div className='flex justify-center'>
-          {roundState.user.emoji}
-        </div>
-        <div className='flex justify-center'>
-          {roundState.ai.emoji}
+          <div className='w-[400px] h-[400px]'>
+            <img src="../../img/robot1.png" alt="AI" title="AI" className="flex-grow" />
+          </div>
+          <div className='flex justify-center mt-10 h-20'>
+            {roundState.ai.emoji}
+          </div>
         </div>
       </div>
         <div>
