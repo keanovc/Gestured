@@ -63,10 +63,12 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
+  console.log(name, email, password);
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await addDoc(collection(db, "users", user.uid), {
+    console.log(user);
+    await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       name,
       authProvider: "local",
@@ -83,32 +85,33 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 };
 
 const updateUser = async (win, game, result) => {
-  const user = await getAuth(app).currentUser;
+  const user = await getDoc(doc(db, "users", auth.currentUser.uid));
+  const { name, uid } = user.data();
 
-  const coll = await getDoc(doc(db, "leaderboard", user.uid));
+  const coll = await getDoc(doc(db, "leaderboard", uid));
 
   if (!coll.exists()) {
     if (game === "webcam") {
-      await setDoc(doc(db, "leaderboard", user.uid), {
+      await setDoc(doc(db, "leaderboard", uid), {
         streaksWebcam: parseInt(win),
         winsWebcam: parseInt(win),
         totalGamesWebcam: 1,
         totalGamesButtons: 0,
         winsButtons: 0,
         streaksButtons: 0,
-        name: user.displayName,
+        name: name,
         updated_at: new Date().toString(),
       });
     }
     if (game === "buttons") {
-      await setDoc(doc(db, "leaderboard", user.uid), {
+      await setDoc(doc(db, "leaderboard", uid), {
         streaksButtons: parseInt(win),
         winsButtons: parseInt(win),
         totalGamesButtons: 1,
         totalGamesWebcam: 0,
         winsWebcam: 0,
         streaksWebcam: 0,
-        name: user.displayName,
+        name: name,
         updated_at: new Date().toString(),
       });
     }
@@ -121,7 +124,7 @@ const updateUser = async (win, game, result) => {
         const scoreFirebase = coll.data().streaksWebcam;
 
         if (scoreFirebase < win) {
-          await updateDoc(doc(db, "leaderboard", user.uid), {
+          await updateDoc(doc(db, "leaderboard", uid), {
             streaksWebcam: win,
             winsWebcam: coll.data().winsWebcam + 1,
             totalGamesWebcam: coll.data().totalGamesWebcam + 1,
@@ -129,7 +132,7 @@ const updateUser = async (win, game, result) => {
           });
         }
         else {
-          await updateDoc(doc(db, "leaderboard", user.uid), {
+          await updateDoc(doc(db, "leaderboard", uid), {
             winsWebcam: coll.data().winsWebcam + 1,
             totalGamesWebcam: coll.data().totalGamesWebcam + 1,
             updated_at: new Date().toString(),
@@ -141,7 +144,7 @@ const updateUser = async (win, game, result) => {
         const scoreFirebase = coll.data().streaksButtons;
 
         if (scoreFirebase < win) {
-          await updateDoc(doc(db, "leaderboard", user.uid), {
+          await updateDoc(doc(db, "leaderboard", uid), {
             streaksButtons: win,
             winsButtons: coll.data().winsButtons + 1,
             totalGamesButtons: coll.data().totalGamesButtons + 1,
@@ -149,7 +152,7 @@ const updateUser = async (win, game, result) => {
           });
         }
         else {
-          await updateDoc(doc(db, "leaderboard", user.uid), {
+          await updateDoc(doc(db, "leaderboard", uid), {
             winsButtons: coll.data().winsButtons + 1,
             totalGamesButtons: coll.data().totalGamesButtons + 1,
             updated_at: new Date().toString(),
@@ -159,13 +162,13 @@ const updateUser = async (win, game, result) => {
     }
     else {
       if (game === "webcam") {
-      await updateDoc(doc(db, "leaderboard", user.uid), {
+      await updateDoc(doc(db, "leaderboard", uid), {
         totalGamesWebcam: coll.data().totalGamesWebcam + 1,
         updated_at: new Date().toString(),
       });
       }
       if (game === "buttons") {
-        await updateDoc(doc(db, "leaderboard", user.uid), {
+        await updateDoc(doc(db, "leaderboard", uid), {
           totalGamesButtons: coll.data().totalGamesButtons + 1,
           updated_at: new Date().toString(),
         });
