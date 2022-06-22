@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Login from './Login/Login';
 import Register from './Register/Register';
 import Reset from './Reset/Reset';
@@ -29,6 +29,7 @@ function App() {
               <Route path="/modes/localbuttons" element={<LocalButtons />} />
             </Route>
             <Route path="/leaderboard" element={<LeaderboardLayout />} >
+              <Route index element={<Navigate to={'/leaderboard/buttons'} />} />
               <Route path="/leaderboard/:mode" element={<Leaderboard />} />
             </Route>
           </Routes>

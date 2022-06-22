@@ -5,7 +5,6 @@ import { db } from "../firebase"
 
 const LeaderboardLayout = () => {
 
-    // use params to determine which leaderboard to display
     const { mode } = useParams();
 
     const [users, setUsers] = useState([]);
@@ -40,6 +39,9 @@ const LeaderboardLayout = () => {
             user.wins = user.winsWebcam;
             user.totalGames = user.totalGamesWebcam;
         });
+        users.sort((a, b) => {
+            return b.streaks - a.streaks;
+        })
     }
     return (
         <div>

@@ -9,12 +9,12 @@ const Modes = () => {
             <Navbar />
             <section id="modes" className="pt-32 pb-8">
                 <h1 className="w-full my-2 text-4xl font-bold leading-tight text-center text-gray-800">
-                    Types of Games
+                    Choose your game mode!
                 </h1>
                 <div className="w-full mb-20">
                     <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
                 </div>
-                <div className="container mx-auto flex flex-wrap pt-12 pb-12">
+                <div className="container mx-auto flex flex-wrap">
                     <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <Link to={'/modes/localcam'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">

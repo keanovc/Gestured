@@ -37,6 +37,8 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
+    // set userid to local storage
+    localStorage.setItem("userId", user.uid);
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
@@ -56,6 +58,8 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    // set userid to local storag
+    localStorage.setItem("userId", auth.currentUser.uid);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -68,6 +72,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     console.log(user);
+    // set userid to local storage
+    localStorage.setItem("userId", user.uid);
     await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       name,
@@ -188,6 +194,8 @@ const sendPasswordReset = async (email) => {
 };
 
 const logout = () => {
+  // delete userid from local storage
+  localStorage.removeItem("userId");
   signOut(auth);
 };
 

@@ -61,7 +61,10 @@ export const Leaderboard = () => {
                                 users.map((user, index) => {
                                     return (
 
-                                        <tr className="bg-white" key={index}>
+                                        <tr className={`bg-white`
+                                        // If the user is the current user, highlight the row
+                                        + (user.id === localStorage.getItem('userId') ? ' bg-indigo-200' : '')
+                                        } key={index}>
                                             <td className="p-3">
                                                 {/* only for the first item */}
                                                 {index === 0 && <div className="w-5">
@@ -94,11 +97,7 @@ export const Leaderboard = () => {
                                                 </div>
                                             </td>
                                             <td className="p-3">
-                                                {
-                                                    user.streaks > 0 ?
-                                                        user.streaks
-                                                        : 0
-                                                }
+                                                { user.streaks  }
                                             </td>
                                             <td className="p-3">
                                                 {user.wins}
