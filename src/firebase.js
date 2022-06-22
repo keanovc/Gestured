@@ -42,7 +42,7 @@ const signInWithGoogle = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
@@ -92,6 +92,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const updateUser = async (win, game, result) => {
   const user = await getDoc(doc(db, "users", auth.currentUser.uid));
+  console.log(user.data());
   const { name, uid } = user.data();
 
   const coll = await getDoc(doc(db, "leaderboard", uid));
