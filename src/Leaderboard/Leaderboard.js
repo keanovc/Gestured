@@ -24,12 +24,17 @@ export const Leaderboard = ({ children }) => {
     return (
         <>
             <Navbar />
-            <p className="text-4xl text-center font-bold pt-32 pb-10 text-white">Leaderboard</p>
+            <h1 className="pt-36 w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+                Leaderboard
+            </h1>
+            <div className="w-full mb-20">
+                <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded-t"></div>
+            </div>
             <div className='flex justify-center items-center'>
-                <div class="w-3/5">
-                    <div class="overflow-auto lg:overflow-visible ">
-                        <table class="table w-full text-gray-500 border-separate space-y-6 text-sm">
-                            <thead class="bg-indigo-500 text-white">
+                <div className="w-3/5">
+                    <div className="overflow-auto lg:overflow-visible ">
+                        <table className="table w-full text-gray-500 border-separate space-y-6 text-sm">
+                            <thead className="bg-gray-800 text-white">
                                 <tr>
                                     <th className="p-3 text-left">Rank</th>
                                     <th className="p-3 text-left">Name</th>
@@ -41,41 +46,41 @@ export const Leaderboard = ({ children }) => {
                                             </EmojiProvider>
                                         </div>
                                     </th>
-                                    <th class="p-3 text-left">Total wins</th>
-                                    <th class="p-3 text-left">Total games</th>
-                                    <th class="p-3 text-left">Win %</th>
+                                    <th className="p-3 text-left">Total wins</th>
+                                    <th className="p-3 text-left">Total games</th>
+                                    <th className="p-3 text-left">Win %</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {
                                 users.map((user, index) => {
                                     return (
-                                        <tr class="bg-white" key={index}>
+                                        <tr className="bg-white" key={index}>
                                             <td className="p-3">
-                                                <span class="font-bold">{index +1}</span>
+                                                <span className="font-bold">{index +1}</span>
                                             </td>
-                                            <td class="p-3">
-                                                <div class="flex align-items-center">
-                                                    <div class="ml-3">
-                                                        <div class="">{user.name}</div>
-                                                        <div class="text-gray-500">{user.email}</div>
+                                            <td className="p-3">
+                                                <div className="flex align-items-center">
+                                                    <div className="ml-3">
+                                                        <div className="">{user.name}</div>
+                                                        <div className="text-gray-500">{user.email}</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="p-3">
+                                            <td className="p-3">
                                                 {
                                                     user.streaksButtons > 0 ?
                                                         user.streaksButtons
                                                         : 0
                                                 }
                                             </td>
-                                            <td class="p-3">
+                                            <td className="p-3">
                                                 {user.winsButtons}
                                             </td>
-                                            <td class="p-3">
+                                            <td className="p-3">
                                                {user.totalGamesButtons}
                                             </td>
-                                            <td class="p-3">
+                                            <td className="p-3">
                                                 {Math.round((user.winsButtons / user.totalGamesButtons) * 100)}%
                                             </td>
                                         </tr>
