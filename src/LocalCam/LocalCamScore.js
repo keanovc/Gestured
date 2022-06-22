@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Emoji, EmojiProvider } from 'react-apple-emojis';
 import emojiData from 'react-apple-emojis/src/data.json'
 import '../Design/Score/Score.css'
+import { updateUser } from '../firebase';
 
 const LocalCamScore = ({score}) => {
+
+  if (score) {
+    updateUser(score, "webcam", result);
+  }
 
   return (
     <div className="headerWrapper">
