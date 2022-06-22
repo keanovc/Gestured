@@ -80,10 +80,14 @@ export default function Multiplayer() {
         // Pull tracks from remote stream, add to video stream
         pc.addEventListener('track', (event) => {
             event.streams[0].getTracks().forEach((track) => {
-
                 remoteStream.addTrack(track);
             });
         });
+
+        pc.onaddstream = function (event) {
+            document.getElementById("remoteFeed").srcObject = event.stream;
+        };
+
         const webcamVideo = document.getElementById('localFeed');
         webcamVideo.srcObject = localStream;
 
