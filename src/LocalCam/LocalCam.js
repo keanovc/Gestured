@@ -17,7 +17,7 @@ export default function Game() {
       setShowModal(!showModal);
     };
 
-  const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/HqWW7SbIy/';
+  const PROVIDED_MODEL_URL = 'https://teachablemachine.withgoogle.com/models/xHyJKmLEI/';
   const RPS_EMOJI = {
     rock:
     <EmojiProvider data={emojiData}>
