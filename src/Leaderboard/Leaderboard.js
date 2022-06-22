@@ -13,7 +13,16 @@ export const Leaderboard = () => {
         const documents = collection(db, 'leaderboard');
         const q = query(documents);
         onSnapshot(q, querySnapshot => {
-            setUsers(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+            // sort ascending streaksButtons
+            const sortedUsers = querySnapshot.docs.sort((a, b) => {
+                return b.data().streaksButtons - a.data().streaksButtons;
+            }).map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            }).slice(0, 10);
+            setUsers(sortedUsers);
         });
         return;
     }, []);
@@ -23,7 +32,8 @@ export const Leaderboard = () => {
             <Navbar />
             <div className="flex justify-center pt-32 gap-5 pb-5">
                 <h1 className="text-4xl text-center font-bold  text-gray-800">Leaderboard</h1>
-                <h2 className="text-white bg-red-500 flex rounded-xl justify-between items-center px-3 gap-2">
+                <h2 className="text-white bg-red-500 flex rounded-xl justify-between items-center px-3
+                 py-2 gap-5 text-underline">
                     <span class="flex h-3 w-3 ">
                         <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
@@ -31,9 +41,9 @@ export const Leaderboard = () => {
                     Live
                 </h2>
             </div>
-            <div className="w-full pb-16">
+            {/* <div className="w-full pb-16">
                 <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
-            </div>
+            </div> */}
             <div className='flex justify-center items-center'>
                 <div className="w-3/5">
                     <div className="overflow-auto lg:overflow-visible ">
