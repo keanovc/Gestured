@@ -101,6 +101,26 @@ const updateUser = async (win, game, result) => {
   
   if (coll.exists()) {
     if (result === "W") {
+      if (game === "webcam") {
+        const scoreFirebase = coll.data().streaksWebcam;
+  
+        if (scoreFirebase < win) {
+          await updateDoc(doc(db, "leaderboard", user.uid), {
+            streaksWebcam: win,
+            winsWebcam: coll.data().winsButtons + 1,
+            totalGamesWebcam: coll.data().totalGamesWebcam + 1,
+            updated_at: new Date().toString(),
+          });
+        }
+        else {
+          await updateDoc(doc(db, "leaderboard", user.uid), {
+            winsWebcam: coll.data().winsButtons + 1,
+            totalGamesWebcam: coll.data().totalGamesWebcam + 1,
+            updated_at: new Date().toString(),
+          });
+        }
+      }
+
       if (game === "buttons") {
         const scoreFirebase = coll.data().streaksButtons;
   
