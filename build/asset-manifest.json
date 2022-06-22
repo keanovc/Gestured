@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.28289acf.css",
+    "main.js": "/static/js/main.3ce76f31.js",
+    "static/media/rules.webp": "/static/media/rules.3ddd7eec4cd69b59a51b.webp",
+    "static/media/leaderboard.svg": "/static/media/leaderboard.0a4311bc3db20e01ee1fc746bcf4ecdf.svg",
+    "static/media/book.png": "/static/media/book.9c9d781bcd08b1a83bf4.png",
+    "index.html": "/index.html",
+    "static/media/icon-close.svg": "/static/media/icon-close.bde602ecd1a4e55e0c27137ed651e027.svg",
+    "main.28289acf.css.map": "/static/css/main.28289acf.css.map",
+    "main.3ce76f31.js.map": "/static/js/main.3ce76f31.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28289acf.css",
+    "static/js/main.3ce76f31.js"
+  ]
+}

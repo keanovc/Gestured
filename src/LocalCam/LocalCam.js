@@ -204,7 +204,7 @@ export default function Game() {
             { roundState.user.emoji }
           </div>
         </div>
-        <h1 className='text-white text-5xl whitespace-nowrap w-80'>
+        <h1 className='text-black text-5xl whitespace-nowrap w-80'>
           {result}
         </h1>
         <div className='w-1/2'>
