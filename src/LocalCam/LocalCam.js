@@ -60,7 +60,6 @@ export default function Game() {
 
   const [score, setScore] = useState(0);
   const [result, setResult] = useState('');
-
   const [resultText, setResultText] = useState('');
 
   const calculateRoundResult = (userHand, AIHand) => {
