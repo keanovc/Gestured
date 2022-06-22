@@ -113,7 +113,6 @@ export const Leaderboard = () => {
                                                         `${Math.round((user.wins / user.totalGames) * 100)} %`
                                                     )
                                                         : 0
-
                                                 }
                                             </td>
                                         </tr>

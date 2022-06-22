@@ -24,7 +24,6 @@ function Register() {
     if (user) navigate("/dashboard");
   }, [user, loading, navigate]);
 
-
   return (
     <>
     <div className="w-full px-4">
