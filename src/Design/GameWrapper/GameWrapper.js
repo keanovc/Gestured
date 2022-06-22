@@ -19,8 +19,8 @@ export const GameWrapper = () => {
     };
   }, [actions]);
 
-  if (result === 'W') {
-    updateUser(score);
+  if (result) {
+    updateUser(score, "buttons", result);
   }
 
   return (
