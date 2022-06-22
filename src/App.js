@@ -13,7 +13,7 @@ import Multiplayer from './LocalCam/multiplayer';
 
 function App() {
   return (
-    <div className="app h-screen bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0]">
+    <div className="app h-screen bg-auto bg-no-repeat bg-center bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0]">
       <Router>
         <AppContextProvider>
           <Routes>
