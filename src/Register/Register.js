@@ -26,11 +26,11 @@ function Register() {
 
   return (
     <>
-    <div className="w-full px-4">
+    <div className="w-full px-4 bg-gradient-to-tl from-[#EE7A6E] to-[#8D5EF0]">
       <div className="flex flex-col items-center justify-center h-screen">
           <div className="bg-white shadow rounded-3xl lg:w-1/3  md:w-1/2 w-full p-10 bg-opacity-40 backdrop-filter backdrop-blur-lg">
               <p tabIndex="0" className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Register a new account</p>
-              <p tabIndex="0" className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Already have an account? <Link to="/">Login</Link> now.</p>
+              <Link to="/"><p tabIndex="0" className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Already have an account? Login now.</p></Link>
               <button aria-label="Continue with google" className="transition duration-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 bg-white flex items-center w-full mt-10" onClick={signInWithGoogle}>
                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt="google"/>
                   <p className="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
