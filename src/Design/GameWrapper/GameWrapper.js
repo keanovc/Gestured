@@ -19,10 +19,9 @@ export const GameWrapper = () => {
     };
   }, [actions]);
 
-  useEffect(() => {
-    updateUser(score, 'buttons', result);
+  if (result) {
+    updateUser(score, "buttons", result);
   }
-  , [score, result]);
 
   return (
     <>

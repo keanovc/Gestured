@@ -85,22 +85,36 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 const updateUser = async (win, game, result) => {
   const user = await getAuth(app).currentUser;
     
-  const coll = await getDoc(doc(db, "users", user.uid));
+  const coll = await getDoc(doc(db, "leaderboard", user.uid));
 
   if (!coll.exists()) {
     if (game === "buttons") {
-      await setDoc(doc(db, "users", user.uid));
+      await setDoc(doc(db, "leaderboard", user.uid), {
+        streaksButtons: parseInt(win),
+        winsButtons: parseInt(win),
+        totalGamesButtons: 1,
+        name: user.displayName,
+        updated_at: new Date().toString(),
+      });
     }
   }
   
   if (coll.exists()) {
-    if (result === 'W') {
+    if (result === "W") {
       if (game === "buttons") {
-        const scoreFirebase = coll.data().scoreButtons;
+        const scoreFirebase = coll.data().streaksButtons;
   
         if (scoreFirebase < win) {
-          await setDoc(doc(db, "users", user.uid), {
-            scoreButtons: win,
+          await updateDoc(doc(db, "leaderboard", user.uid), {
+            streaksButtons: win,
+            winsButtons: coll.data().winsButtons + 1,
+            totalGamesButtons: coll.data().totalGamesButtons + 1,
+            updated_at: new Date().toString(),
+          });
+        }
+        else {
+          await updateDoc(doc(db, "leaderboard", user.uid), {
+            winsButtons: coll.data().winsButtons + 1,
             totalGamesButtons: coll.data().totalGamesButtons + 1,
             updated_at: new Date().toString(),
           });
@@ -108,7 +122,7 @@ const updateUser = async (win, game, result) => {
       }
     }
     else {
-      await updateDoc(doc(db, "users", user.uid), {
+      await updateDoc(doc(db, "leaderboard", user.uid), {
         totalGamesButtons: coll.data().totalGamesButtons + 1,
         updated_at: new Date().toString(),
       });

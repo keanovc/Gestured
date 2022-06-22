@@ -10,15 +10,13 @@ export const Leaderboard = ({ children }) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const colRef = collection(db, "users")
+        const colRef = collection(db, "leaderboard")
         onSnapshot(colRef, (snapshot) => {
             snapshot.docs.forEach((doc) => {
                 setUsers((prev) => [...prev, doc.data()])
             })
         })
     }, []);
-
-    console.log(users);
 
     return (
         <>
@@ -33,10 +31,11 @@ export const Leaderboard = ({ children }) => {
                             Streak
                             <div className="w-5 ml-2">
                                 <EmojiProvider data={emojiData}>
-                                <Emoji className='w-8' name="fire" />
+                                    <Emoji className='w-8' name="fire" />
                                 </EmojiProvider>
                             </div>
                         </th>
+                        <th className="px-4 py-3">Total wins</th>
                         <th className="px-4 py-3">Total games</th>
                         <th className="px-4 py-3">Win %</th>
                     </tr>
@@ -49,19 +48,15 @@ export const Leaderboard = ({ children }) => {
                                     <tr className="text-gray-700" key={index}>
                                         <td className="px-4 py-3">{index +1}</td>
                                         <td className="px-4 py-3">{user.name}</td>
-                                        <td className="px-4 py-3">{user.scoreButtons}</td>
+                                        <td className="px-4 py-3">{user.streaksButtons}</td>
+                                        <td className="px-4 py-3">{user.winsButtons}</td>
                                         <td className="px-4 py-3">{user.totalGamesButtons}</td>
-                                        <td className="px-4 py-3">{(user.scoreButtons / user.totalGamesButtons) * 100}%</td>
+                                        <td className="px-4 py-3">{Math.round((user.winsButtons / user.totalGamesButtons) * 100)}%</td>
                                     </tr>
                                 )
                             }
                             )
                         }
-                        {/* <td className="py-3"></td>
-                        <td className="px-4 py-3"></td>
-                        <td className="px-4 py-3"></td>
-                        <td className="px-4 py-3"></td>
-                        <td className="px-4 py-3"></td> */}
                 </tbody>
             </table>
         </>
