@@ -15,16 +15,11 @@ export const Leaderboard = ({ children }) => {
     useEffect(() => {
         const documents = collection(db, 'leaderboard');
         const q = query(documents);
-
         onSnapshot(q, querySnapshot => {
             setUsers(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         });
-
         return;
     }, []);
-
-    console.log(users);
-
 
     return (
         <>

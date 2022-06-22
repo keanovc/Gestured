@@ -41,8 +41,6 @@ export default function Game() {
     </EmojiProvider>,
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
   const webcamRef = useRef();
   const [initialState, setInitialState] = useState({
     model: null,
@@ -66,35 +64,34 @@ export default function Game() {
   const calculateRoundResult = (userHand, AIHand) => {
     if (userHand === 'scissors' && (AIHand === 'paper' || AIHand === 'lizard')) {
       setScore(score + 1);
-      setResult('You win!');
+      setResult('W');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'paper' && (AIHand === 'rock' || AIHand === 'spock')) {
       setScore(score + 1);
-      setResult('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'rock' && (AIHand === 'lizard' || AIHand === 'scissors')) {
       setScore(score + 1);
-      setResult('You win!');
+      setResult('W');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'lizard' && (AIHand === 'spock' || AIHand === 'paper')) {
       setScore(score + 1);
-      setResult('You win!');
+      setResult('W');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'spock' && (AIHand === 'scissors' || AIHand === 'rock')) {
       setScore(score + 1);
-      setResult('You win!');
+      setResult('W');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === AIHand) {
-      setResult('Tie');
+      setResult('T');
       localStorage.setItem('score', score);
     } else {
       setScore(0);
-      setResult('You lose!');
+      setResult('L');
       localStorage.setItem('score', 0);
     }
     return 'Draw';
@@ -180,7 +177,7 @@ export default function Game() {
     {roundState.user.result}
     <Navbar />
     <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl w-full">
-    <LocalCamScore score={score} />
+    <LocalCamScore score={score} result={result} />
       <div className="text-center flex items-center justify-between gap-20">
         <div className='w-1/2'>
           {/* <h5 className='my-5'>

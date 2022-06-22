@@ -84,10 +84,19 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const updateUser = async (win, game, result) => {
   const user = await getAuth(app).currentUser;
-    
+
   const coll = await getDoc(doc(db, "leaderboard", user.uid));
 
   if (!coll.exists()) {
+    if (game === "webcam") {
+      await setDoc(doc(db, "leaderboard", user.uid), {
+        streaksWebcam: parseInt(win),
+        winsWebcam: parseInt(win),
+        totalGamesWebcam: 1,
+        name: user.displayName,
+        updated_at: new Date().toString(),
+      });
+    }
     if (game === "buttons") {
       await setDoc(doc(db, "leaderboard", user.uid), {
         streaksButtons: parseInt(win),
@@ -98,12 +107,13 @@ const updateUser = async (win, game, result) => {
       });
     }
   }
-  
+
   if (coll.exists()) {
     if (result === "W") {
       if (game === "webcam") {
+        console.log("webcam");
         const scoreFirebase = coll.data().streaksWebcam;
-  
+
         if (scoreFirebase < win) {
           await updateDoc(doc(db, "leaderboard", user.uid), {
             streaksWebcam: win,
@@ -123,7 +133,7 @@ const updateUser = async (win, game, result) => {
 
       if (game === "buttons") {
         const scoreFirebase = coll.data().streaksButtons;
-  
+
         if (scoreFirebase < win) {
           await updateDoc(doc(db, "leaderboard", user.uid), {
             streaksButtons: win,

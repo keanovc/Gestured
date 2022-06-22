@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav id="header" className="fixed w-full z-30 top-0 text-white bg-black bg-opacity-40 backdrop-filter backdrop-blur-lg">
+      <nav id="header" className="fixed w-full z-30 top-0 text-white bg-white border-b shadow-md  py-3">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="flex items-center uppercase">
           <Link to={'/dashboard'} className="text-indigo-500 no-underline  font-bold text-2xl lg:text-4xl flex items-center">
@@ -71,7 +71,7 @@ const Navbar = () => {
               {navItems.map((navItem) => (
                 <li className="nav-item mr-10" key={navItem.href}>
                     <NavLink
-                        className={({isActive}) => (isActive ? 'font-bold text-white' : 'text-white transition-all')}
+                        className={({isActive}) => (isActive ? 'font-bold text-black' : 'text-black transition-all')}
                         to={navItem.href}>
                         {navItem.label}
                     </NavLink>
@@ -81,7 +81,7 @@ const Navbar = () => {
           <button
             onClick={logout}
             id="navAction"
-            className="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            className="mx-auto lg:mx-0 bg-indigo-500 hover:bg-indigo-700 text-white font-bold rounded-full mt-4 lg:mt-0 py-3 px-8 opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out shadow-md"
           >
             Logout
           </button>
