@@ -6,7 +6,7 @@ import emojiData from 'react-apple-emojis/src/data.json';
 
 export const Score = () => {
   const [AppState, actions] = useAppContext();
-  const { score, result } = AppState;
+  const { score } = AppState;
   let scoreClass = AppState.result === 'W' ? 'won' : AppState.result === 'L' ? 'lost' : '';
   let isMounted = useRef(true);
 

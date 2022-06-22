@@ -4,11 +4,10 @@ import './PlayerBotWrapper.css';
 import P from 'prop-types';
 import { EmojiProvider, Emoji } from 'react-apple-emojis';
 import emojiData from 'react-apple-emojis/src/data.json';
-import { updateUser } from '../../firebase';
 
 export const GameChoice = ({ isMachine }) => {
   const [AppState] = useAppContext();
-  const { playerChoice, machineChoice, score, result } = AppState;
+  const { playerChoice, machineChoice } = AppState;
 
   const title = isMachine === false ? 'Your Choise' : "The AI's Choise";
 
