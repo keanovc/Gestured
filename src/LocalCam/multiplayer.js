@@ -69,7 +69,7 @@ export default function Multiplayer() {
 
     const startLocalStream = async () => {
         setLoading(false);
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         remoteStream = new MediaStream();
 
         // Push tracks from local stream to peer connection
@@ -112,7 +112,7 @@ export default function Multiplayer() {
         //event.candidate.toJSON()
         pc.onicecandidate = async (event) => {
             console.log('enter onice local');
-            event.candidate && await addDoc(offerCandidates, event.candidate.toJSON());  
+            event.candidate && await addDoc(offerCandidates, event.candidate.toJSON());
         };
 
         // Create offer
@@ -128,7 +128,7 @@ export default function Multiplayer() {
 
         // Listen for remote answer
         onSnapshot(callDoc, (snapshot) => {
-            console.log('foo', typeof(snapshot));
+            console.log('foo', typeof (snapshot));
             const data = snapshot.data();
 
             console.log('data for calldoc: ', data);
@@ -136,6 +136,7 @@ export default function Multiplayer() {
                 const answerDescription = new RTCSessionDescription(data.answer);
                 pc.setRemoteDescription(answerDescription);
             }
+
         });
 
         // When answered, add candidate to peer connection
@@ -168,6 +169,7 @@ export default function Multiplayer() {
 
         const offerDescription = callData.offer;
         await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
 
         const answerDescription = await pc.createAnswer();
         await pc.setLocalDescription(answerDescription);
@@ -229,7 +231,7 @@ export default function Multiplayer() {
                                         />
                                     </div>
                                 ) :
-                                    <video autoPlay={true} id='remoteFeed' />
+                                    <video autoPlay={true} id='remoteFeed' className="h-full w-full object-cover" />
                                 }
                             </div>
                         </div>
