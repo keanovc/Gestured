@@ -8,11 +8,11 @@ const Modes = () => {
         <>
             <Navbar />
             <section id="modes" className="pt-32 pb-8">
-                <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
+                <h1 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
                     Types of Games
                 </h1>
                 <div className="w-full mb-20">
-                    <div className="h-1 mx-auto bg-white w-64 my-0 py-0 rounded-t"></div>
+                    <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
                 </div>
                 <div className="container mx-auto flex flex-wrap pt-12 pb-12">
                     <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -27,7 +27,7 @@ const Modes = () => {
                                 </div>
                                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Play your favorite game against the AI with your webcam!</h1>
                                 <div className="text-center">
-                                    <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                                    <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                                 </div>
                             </div>
                         </Link>
@@ -44,7 +44,7 @@ const Modes = () => {
                                 </div>
                                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Don't you have a webcam? Play with buttons in this gamemode!</h1>
                                 <div className="text-center">
-                                    <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                                    <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                                 </div>
                             </div>
                         </Link>
@@ -61,7 +61,7 @@ const Modes = () => {
                                 </div>
                                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Do you prefer to play with your friends online? Then choose this!</h1>
                                 <div className="text-center">
-                                    <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                                    <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                                 </div>
                             </div>
                         </Link>

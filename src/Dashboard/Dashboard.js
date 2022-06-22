@@ -66,7 +66,7 @@ function Dashboard() {
                 </div>
                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Play your favorite game against the AI with your webcam!</h1>
                 <div className="text-center">
-                  <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                  <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                 </div>
               </div>
             </Link>
@@ -83,7 +83,7 @@ function Dashboard() {
                 </div>
                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Don't you have a webcam? Play with buttons in this gamemode!</h1>
                 <div className="text-center">
-                  <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                  <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                 </div>
               </div>
             </Link>
@@ -100,7 +100,7 @@ function Dashboard() {
                 </div>
                 <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Do you prefer to play with your friends online? Then choose this!</h1>
                 <div className="text-center">
-                  <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
+                  <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                 </div>
               </div>
             </Link>

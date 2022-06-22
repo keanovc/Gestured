@@ -13,7 +13,7 @@ import Multiplayer from './LocalCam/multiplayer';
 
 function App() {
   return (
-    <div className="app h-screen bg-auto bg-no-repeat bg-center bg-gray-100">
+    // <div className="app h-screen bg-auto bg-no-repeat bg-center bg-gray-100">
       <Router>
         <AppContextProvider>
           <Routes>
@@ -31,7 +31,7 @@ function App() {
           </Routes>
         </AppContextProvider>
       </Router>
-    </div>
+    // </div>
   );
 }
 
