@@ -27,7 +27,7 @@ export const Leaderboard = ({ children }) => {
         <>
             <Navbar />
             <p className="text-4xl text-center font-bold pt-32 pb-10 text-white">Leaderboard</p>
-            <table className="rounded-t-lg m-5 w-4/5 mx-auto bg-opacity-40 backdrop-filter backdrop-blur-lg bg-white text-gray-700 rounded-b-lg">
+            <table className="rounded-t-lg m-5 w-4/5 mx-auto bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
                 <thead>
                     <tr className="text-left border-b border-gray-300 rounded-t-lg">
                         <th className="px-4 py-3">#</th>
