@@ -81,7 +81,7 @@ const Navbar = () => {
           <button
             onClick={logout}
             id="navAction"
-            className="mx-auto lg:mx-0 bg-indigo-500 hover:bg-indigo-700 text-white font-bold rounded-full mt-4 lg:mt-0 py-3 px-8 opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out shadow-md"
+            className="mx-auto lg:mx-0 bg-indigo-500 hover:bg-indigo text-white font-bold rounded-full mt-4 lg:mt-0 py-3 px-8 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out shadow-md"
           >
             Logout
           </button>

@@ -14,7 +14,7 @@ const Modes = () => {
                 <div className="w-full mb-20">
                     <div className="h-1 mx-auto bg-white w-64 my-0 py-0 rounded-t"></div>
                 </div>
-                <div className="container mx-auto flex flex-wrap pt-4 pb-12">
+                <div className="container mx-auto flex flex-wrap pt-12 pb-12">
                     <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <Link to={'/modes/localcam'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
@@ -42,7 +42,7 @@ const Modes = () => {
                                     <h3 className="text-center text-4xl font-bold">User VS AI</h3>
                                     <span className="text-sm">Buttons</span>
                                 </div>
-                                <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Don't you have a webcam? No problem play with buttons in this gamemode!</h1>
+                                <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Don't you have a webcam? Play with buttons in this gamemode!</h1>
                                 <div className="text-center">
                                     <button className="rounded-xl bg-black w-full py-2 text-white">Select gamemode</button>
                                 </div>
