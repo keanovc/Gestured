@@ -1,31 +1,14 @@
-import { collection, onSnapshot, query } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { Emoji, EmojiProvider } from "react-apple-emojis";
 import emojiData from 'react-apple-emojis/src/data.json';
-import { db } from "../firebase"
 import Navbar from "../Navbar/Navbar"
+import { Link, NavLink, useOutletContext } from "react-router-dom";
 import './Leaderboard.css'
 
 export const Leaderboard = () => {
 
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        const documents = collection(db, 'leaderboard');
-        const q = query(documents);
-        onSnapshot(q, querySnapshot => {
-            // sort ascending streaksButtons
-            const sortedUsers = querySnapshot.docs.sort((a, b) => {
-                return b.data().streaksButtons - a.data().streaksButtons;
-            }).map(doc => {
-                return {
-                    id: doc.id,
-                    ...doc.data()
-                }
-            }).slice(0, 10);
-            setUsers(sortedUsers);
-        });
-        return;
-    }, []);
+    const { users } = useOutletContext();
+
+    console.log(users);
 
     return (
         <>
@@ -33,16 +16,26 @@ export const Leaderboard = () => {
             <div className="flex justify-center pt-32 gap-5 pb-5">
                 <h1 className="text-4xl text-center font-bold  text-gray-800">Leaderboard</h1>
                 <h2 className="text-white bg-red-500 flex rounded-xl justify-between items-center px-3 gap-2">
-                    <span class="flex h-3 w-3 ">
-                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                    <span className="flex h-3 w-3 ">
+                        <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                     </span>
                     Live
                 </h2>
             </div>
-            <div className="w-full pb-16">
+            <div className="w-full">
                 <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
             </div>
+                {/* <button onClick={setButtonsData}>
+                    Buttons
+                </button>
+                <button onClick={setWebcamData}>
+                    Webcam
+                </button> */}
+                <div className="flex justify-center items-center gap-3">
+                    <NavLink to='/leaderboard/buttons' className={({ isActive }) => (isActive ? 'mx-auto lg:mx-0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out bg-indigo-500 text-white' : 'mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out')}>Buttons</NavLink>
+                    <NavLink to='/leaderboard/webcam' className={({ isActive }) => (isActive ? 'mx-auto lg:mx-0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out bg-indigo-500 text-white' : 'mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out')}>Webcam</NavLink>
+                </div>
             <div className='flex justify-center items-center'>
                 <div className="w-3/5">
                     <div className="overflow-auto lg:overflow-visible ">
@@ -70,7 +63,7 @@ export const Leaderboard = () => {
                                 users.map((user, index) => {
                                     return (
 
-                                        <tr class="bg-white" key={index}>
+                                        <tr className="bg-white" key={index}>
                                             <td className="p-3">
                                                 {/* only for the first item */}
                                                 {index === 0 && <div className="w-5">
@@ -92,7 +85,7 @@ export const Leaderboard = () => {
                                                 </div>}
                                             </td>
                                             <td className="p-3">
-                                                <span class="font-bold">{index +1}</span>
+                                                <span className="font-bold">{index +1}</span>
                                             </td>
                                             <td className="p-3">
                                                 <div className="flex align-items-center">
@@ -104,19 +97,19 @@ export const Leaderboard = () => {
                                             </td>
                                             <td className="p-3">
                                                 {
-                                                    user.streaksButtons > 0 ?
-                                                        user.streaksButtons
+                                                    user.streaks > 0 ?
+                                                        user.streaks
                                                         : 0
                                                 }
                                             </td>
                                             <td className="p-3">
-                                                {user.winsButtons}
+                                                {user.wins}
                                             </td>
                                             <td className="p-3">
-                                               {user.totalGamesButtons}
+                                               {user.totalGames}
                                             </td>
                                             <td className="p-3">
-                                                {Math.round((user.winsButtons / user.totalGamesButtons) * 100)}%
+                                                {Math.round((user.wins / user.totalGames) * 100)}%
                                             </td>
                                         </tr>
                                     )
