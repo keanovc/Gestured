@@ -93,6 +93,9 @@ const updateUser = async (win, game, result) => {
         streaksWebcam: parseInt(win),
         winsWebcam: parseInt(win),
         totalGamesWebcam: 1,
+        totalGamesButtons: 0,
+        winsButtons: 0,
+        streaksButtons: 0,
         name: user.displayName,
         updated_at: new Date().toString(),
       });
@@ -102,6 +105,9 @@ const updateUser = async (win, game, result) => {
         streaksButtons: parseInt(win),
         winsButtons: parseInt(win),
         totalGamesButtons: 1,
+        totalGamesWebcam: 0,
+        winsWebcam: 0,
+        streaksWebcam: 0,
         name: user.displayName,
         updated_at: new Date().toString(),
       });
@@ -117,14 +123,14 @@ const updateUser = async (win, game, result) => {
         if (scoreFirebase < win) {
           await updateDoc(doc(db, "leaderboard", user.uid), {
             streaksWebcam: win,
-            winsWebcam: coll.data().winsButtons + 1,
+            winsWebcam: coll.data().winsWebcam + 1,
             totalGamesWebcam: coll.data().totalGamesWebcam + 1,
             updated_at: new Date().toString(),
           });
         }
         else {
           await updateDoc(doc(db, "leaderboard", user.uid), {
-            winsWebcam: coll.data().winsButtons + 1,
+            winsWebcam: coll.data().winsWebcam + 1,
             totalGamesWebcam: coll.data().totalGamesWebcam + 1,
             updated_at: new Date().toString(),
           });
@@ -152,10 +158,18 @@ const updateUser = async (win, game, result) => {
       }
     }
     else {
+      if (game === "webcam") {
       await updateDoc(doc(db, "leaderboard", user.uid), {
-        totalGamesButtons: coll.data().totalGamesButtons + 1,
+        totalGamesWebcam: coll.data().totalGamesWebcam + 1,
         updated_at: new Date().toString(),
       });
+      }
+      if (game === "buttons") {
+        await updateDoc(doc(db, "leaderboard", user.uid), {
+          totalGamesButtons: coll.data().totalGamesButtons + 1,
+          updated_at: new Date().toString(),
+        });
+      }
     }
   }
 }
