@@ -50,8 +50,8 @@ const Modes = () => {
                         </Link>
                     </div>
                     <div className="w-full lg:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                        <Link to={"/modes/multiplayer"}>
-                            <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
+                        {/* <Link to={"/modes/multiplayer"}> */}
+                            <div className="p-8 rounded-3xl bg-white border opacity-80 blur-sm">
                                 <div className="-mb-20 -translate-y-1/2 transform">
                                     <img src="../../img/wifi.png" alt="User vs User" title="User vs User" className="mx-auto h-48" />
                                 </div>
@@ -64,7 +64,7 @@ const Modes = () => {
                                     <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
                                 </div>
                             </div>
-                        </Link>
+                        {/* </Link> */}
                     </div>
                 </div>
             </section>
