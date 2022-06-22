@@ -24,18 +24,12 @@ export const Leaderboard = () => {
             <div className="w-full">
                 <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
             </div>
-                {/* <button onClick={setButtonsData}>
-                    Buttons
-                </button>
-                <button onClick={setWebcamData}>
-                    Webcam
-                </button> */}
-                <div className="flex justify-center items-center gap-3">
+                <div className="flex justify-center items-center gap-3 w-fit mx-auto">
                     <NavLink to='/leaderboard/buttons' className={({ isActive }) => (isActive ? 'mx-auto lg:mx-0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out bg-indigo-500 text-white' : 'mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out')}>Buttons</NavLink>
                     <NavLink to='/leaderboard/webcam' className={({ isActive }) => (isActive ? 'mx-auto lg:mx-0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out bg-indigo-500 text-white' : 'mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out')}>Webcam</NavLink>
                 </div>
-            <div className='flex justify-center items-center'>
-                <div className="w-3/5">
+            <div className='flex justify-center items-cente'>
+                <div className="w-full sm:w-3/5">
                     <div className="overflow-auto lg:overflow-visible ">
                         <table className="table w-full text-gray-500 border-separate space-y-6 text-sm">
                             <thead className="bg-gray-800 text-white">

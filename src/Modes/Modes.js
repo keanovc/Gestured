@@ -15,7 +15,7 @@ const Modes = () => {
                     <div className="h-1 mx-auto bg-gray-800 w-64 my-0 py-0 rounded"></div>
                 </div>
                 <div className="container mx-auto flex flex-wrap">
-                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                    <div className="w-full lg:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <Link to={'/modes/localcam'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                                 <div className="-mb-20 -translate-y-1/2 transform">
@@ -32,7 +32,7 @@ const Modes = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                    <div className="w-full lg:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <Link to={'/modes/localbuttons'}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                                 <div className="-mb-20 -translate-y-1/2 transform">
@@ -49,7 +49,7 @@ const Modes = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                    <div className="w-full lg:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <Link to={"/modes/multiplayer"}>
                             <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                                 <div className="-mb-20 -translate-y-1/2 transform">
