@@ -88,23 +88,28 @@ function Dashboard() {
               </div>
             </Link>
           </div>
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
-            <Link to={"/modes/multiplayer"}>
-              <div className="p-8 cursor-pointer rounded-3xl bg-white border transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
-                <div className="-mb-20 -translate-y-1/2 transform">
-                  <img src="../../img/wifi.png" alt="Kobe Bryant" title="Kobe Bryant" className="mx-auto h-48" />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-center text-4xl font-bold">User VS User</h3>
-                  <span className="text-sm">Online</span>
-                </div>
-                <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Do you prefer to play with your friends online? Then choose this!</h1>
-                <div className="text-center">
-                  <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
-                </div>
-              </div>
-            </Link>
-          </div>
+          <div className="w-full lg:w-1/3 p-6 flex flex-col flex-grow flex-shrink select-none relative">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                            <h1 className="font-bold text-black text-3xl">
+                                Coming soon!
+                            </h1>
+                        </div>
+                        {/* <Link to={"/modes/multiplayer"}> */}
+                            <div className="p-8 rounded-3xl bg-white border opacity-50 blur-sm">
+                                <div className="-mb-20 -translate-y-1/2 transform">
+                                    <img src="../../img/wifi.png" alt="User vs User" title="User vs User" className="mx-auto h-48 drag-none" />
+                                </div>
+                                <div className="text-center">
+                                    <h3 className="text-center text-4xl font-bold">User VS User</h3>
+                                    <span className="text-sm">Online</span>
+                                </div>
+                                <h1 className="mt-16 mb-20 flex justify-center text-center text-2xl">Do you prefer to play with your friends online? Then choose this!</h1>
+                                <div className="text-center">
+                                    <button className="rounded-xl bg-gray-800 w-full py-2 text-white">Select gamemode</button>
+                                </div>
+                            </div>
+                        {/* </Link> */}
+                    </div>
         </div>
       </section>
       <svg className="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg">
