@@ -185,13 +185,36 @@ export default function Multiplayer() {
         <>
             <Navbar />
             <section className="flex flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center text-xl w-full">
-                <div className="text-center flex items-center justify-between gap-20">
-                    <div className='w-1/2'>
-                        {/* <h5 className='my-5'>
-                You
-                {` ${roundState.user.result}`}
-              </h5> */}
+                <div className='grid grid-cols-2 mx-auto w-[880px]'>
+                    <div className='flex justify-center'>
+                        {roundState.user.emoji}
+                    </div>
+                    <div className='flex justify-center'>
+                        {roundState.ai.emoji}
+                    </div>
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        className="cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                        onClick={startLocalStream}
+                    >
+                        Start
+                    </button>
+                </div>
+                <div className="flex flex-row items-center">
+                    <button onClick={createOffer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                        create room
+                    </button>
+                    <input onChange={handleChange} value={roomCode} disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition text-center' : "text-center w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
 
+                    </input>
+                    <button onClick={answer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
+                        join room
+                    </button>
+                </div>
+                <div className="text-center flex items-center justify-between gap-48 mt-8">
+                    <div className='w-1/2'>
                         <div className="py-0 flex justify-center flex-col items-center gap-3">
                             <div className='rounded-full overflow-hidden w-[400px] h-[400px]'>
 
@@ -226,32 +249,13 @@ export default function Multiplayer() {
                         </div>
                     </div>
                 </div>
-                <div className='grid grid-cols-2 mx-auto w-[880px] mt-10'>
-                    <div className='flex justify-center'>
-                        {roundState.user.emoji}
-                    </div>
-                    <div className='flex justify-center'>
-                        {roundState.ai.emoji}
-                    </div>
-                </div>
                 <div>
                     <button
                         type="button"
                         className="cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-                        onClick={startLocalStream}
+                    // onClick={play}
                     >
                         Play
-                    </button>
-                </div>
-                <div className="flex flex-row items-center">
-                    <button onClick={createOffer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
-                        create room
-                    </button>
-                    <input onChange={handleChange} value={roomCode} disabled={loading} placeholder="room code" className={`${loading ? 'opacity-50 w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition text-center' : "text-center w-80 ml-8 mr-8 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transitiont"} `}>
-
-                    </input>
-                    <button onClick={answer} disabled={loading} type="button" className={`${loading ? 'opacity-50 mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition' : "cursor-pointer mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"} `}>
-                        join room
                     </button>
                 </div>
             </section>
