@@ -9,6 +9,8 @@ export const GameWrapper = () => {
   const [AppState, actions] = useAppContext();
   const { score, result } = AppState;
 
+  console.log(AppState);
+
   useEffect(() => {
     let timer = setTimeout(() => {
       actions.machineChoice();
