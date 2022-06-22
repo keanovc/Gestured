@@ -74,13 +74,11 @@ export default function Multiplayer() {
 
         // Push tracks from local stream to peer connection
         localStream.getTracks().forEach((track) => {
-            console.log('tracks local', track);
             pc.addTrack(track, localStream);
         });
 
         // Pull tracks from remote stream, add to video stream
         pc.addEventListener('track', (event) => {
-            console.log('onTRAICK');
             event.streams[0].getTracks().forEach((track) => {
 
                 remoteStream.addTrack(track);
@@ -103,15 +101,13 @@ export default function Multiplayer() {
         const callDoc = await addDoc(collection(db, "calls"), {});
         const offerCandidates = collection(callDoc, "offerCandidates");
         const answerCandidates = collection(callDoc, "anwserCandidates");
-        console.log(offerCandidates);
-        console.log(answerCandidates);
+
         setRoomCode(callDoc.id);
 
 
         // Get candidates for caller, save to db
         //event.candidate.toJSON()
         pc.onicecandidate = async (event) => {
-            console.log('enter onice local');
             event.candidate && await addDoc(offerCandidates, event.candidate.toJSON());
         };
 
@@ -128,10 +124,8 @@ export default function Multiplayer() {
 
         // Listen for remote answer
         onSnapshot(callDoc, (snapshot) => {
-            console.log('foo', typeof (snapshot));
             const data = snapshot.data();
 
-            console.log('data for calldoc: ', data);
             if (!pc.currentRemoteDescription && data?.answer) {
                 const answerDescription = new RTCSessionDescription(data.answer);
                 pc.setRemoteDescription(answerDescription);
@@ -141,9 +135,7 @@ export default function Multiplayer() {
 
         // When answered, add candidate to peer connection
         onSnapshot(answerCandidates, (snapshot) => {
-            console.log('snpashot ', snapshot);
             snapshot.docChanges().forEach((change) => {
-                console.log('data for awnser: ', change);
                 if (change.type === 'added') {
                     const candidate = new RTCIceCandidate(change.doc.data());
                     pc.addIceCandidate(candidate);
@@ -156,12 +148,10 @@ export default function Multiplayer() {
     const answer = async () => {
         const callId = roomCode;
         const callDoc = doc(db, 'calls', callId);
-        console.log(callDoc);
         const offerCandidates = collection(callDoc, "offerCandidates");
         const answerCandidates = collection(callDoc, "anwserCandidates");
 
         pc.onicecandidate = async (event) => {
-            console.log("blooblap");
             event.candidate && await addDoc(answerCandidates, event.candidate.toJSON());
         };
 
@@ -183,7 +173,6 @@ export default function Multiplayer() {
 
         onSnapshot(offerCandidates, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
-                console.log(change);
                 if (change.type === 'added') {
                     let data = change.doc.data();
                     pc.addIceCandidate(new RTCIceCandidate(data));
