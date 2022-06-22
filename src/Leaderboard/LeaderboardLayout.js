@@ -12,16 +12,14 @@ const LeaderboardLayout = () => {
     useEffect(() => {
         const documents = collection(db, 'leaderboard');
         const q = query(documents);
-        onSnapshot(q, querySnapshot => {
-            const sortedUsers = querySnapshot.docs.sort((a, b) => {
-                return b.data().streaksButtons - a.data().streaksButtons;
-            }).map(doc => {
+        onSnapshot(q, (snapshot) => {
+            const users = snapshot.docs.map(doc => {
                 return {
-                    id: doc.id,
-                    ...doc.data()
+                    ...doc.data(),
+                    id: doc.id
                 }
-            }).slice(0, 10);
-            setUsers(sortedUsers);
+            })
+            setUsers(users);
         });
         return;
     }, []);
@@ -32,6 +30,10 @@ const LeaderboardLayout = () => {
             user.wins = user.winsButtons;
             user.totalGames = user.totalGamesButtons;
         });
+        // sort descending by streaks
+        users.sort((a, b) => {
+            return b.streaks - a.streaks;
+        })
     }else if (mode === 'webcam') {
         users.forEach(user => {
             user.streaks = user.streaksWebcam;

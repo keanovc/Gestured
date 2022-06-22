@@ -8,8 +8,6 @@ export const Leaderboard = () => {
 
     const { users } = useOutletContext();
 
-    console.log(users);
-
     return (
         <>
             <Navbar />
@@ -109,7 +107,14 @@ export const Leaderboard = () => {
                                                {user.totalGames}
                                             </td>
                                             <td className="p-3">
-                                                {Math.round((user.wins / user.totalGames) * 100)}%
+                                                {
+                                                    user.totalGames > 0 ?
+                                                    (
+                                                        `${Math.round((user.wins / user.totalGames) * 100)} %`
+                                                    )
+                                                        : 0
+
+                                                }
                                             </td>
                                         </tr>
                                     )

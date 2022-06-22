@@ -40,7 +40,7 @@ const Navbar = () => {
           label: "Home",
       },
       {
-          href: "/leaderboard",
+          href: "/leaderboard/buttons",
           label: "Leaderboard",
       },
       {
@@ -75,6 +75,14 @@ const Navbar = () => {
                         to={navItem.href}>
                         {navItem.label}
                     </NavLink>
+                    {/* navlink leaderbord can also be active when leaderboard/webcam */}
+                    {navItem.href === "/leaderboard/webcam" && (
+                        <NavLink
+                            className={({isActive}) => (isActive ? 'font-bold text-black' : 'text-black transition-all')}
+                            to={`${navItem.href}/${location.pathname.split('/')[2]}`}>
+                            {navItem.label}
+                        </NavLink>
+                    )}
                 </li>
               ))}
           </ul>
