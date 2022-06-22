@@ -1,4 +1,4 @@
-import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Emoji, EmojiProvider } from "react-apple-emojis";
 import emojiData from 'react-apple-emojis/src/data.json';
@@ -10,13 +10,18 @@ export const Leaderboard = ({ children }) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const colRef = collection(db, "leaderboard")
-        onSnapshot(colRef, (snapshot) => {
-            snapshot.docs.forEach((doc) => {
-                setUsers((prev) => [...prev, doc.data()])
-            })
-        })
+        const documents = collection(db, 'leaderboard');
+        const q = query(documents);
+
+        onSnapshot(q, querySnapshot => {
+            setUsers(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        });
+
+        return;
     }, []);
+
+    console.log(users);
+
 
     return (
         <>
