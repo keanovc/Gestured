@@ -23,8 +23,7 @@ export const Leaderboard = () => {
             <Navbar />
             <div className="flex justify-center pt-32 gap-5 pb-5">
                 <h1 className="text-4xl text-center font-bold  text-gray-800">Leaderboard</h1>
-                <h2 className="text-white bg-red-500 flex rounded-xl justify-between items-center px-3
-                 py-2 gap-5">
+                <h2 className="text-white bg-red-500 flex rounded-xl justify-between items-center px-3 gap-2">
                     <span class="flex h-3 w-3 ">
                         <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-white opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
