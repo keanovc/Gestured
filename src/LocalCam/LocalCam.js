@@ -61,41 +61,49 @@ export default function Game() {
   const [score, setScore] = useState(0);
   const [result, setResult] = useState('');
 
+  const [resultText, setResultText] = useState('');
+
   const calculateRoundResult = (userHand, AIHand) => {
     if (userHand === 'scissors' && (AIHand === 'paper' || AIHand === 'lizard')) {
       setScore(score + 1);
       setResult('W');
+      setResultText('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'paper' && (AIHand === 'rock' || AIHand === 'spock')) {
       setScore(score + 1);
+      setResult('W');
+      setResultText('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'rock' && (AIHand === 'lizard' || AIHand === 'scissors')) {
       setScore(score + 1);
       setResult('W');
+      setResultText('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'lizard' && (AIHand === 'spock' || AIHand === 'paper')) {
       setScore(score + 1);
       setResult('W');
+      setResultText('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === 'spock' && (AIHand === 'scissors' || AIHand === 'rock')) {
       setScore(score + 1);
       setResult('W');
+      setResultText('You win!');
       localStorage.setItem('score', score);
       return <ConfettiComponent />;
     } else if (userHand === AIHand) {
       setResult('T');
+      setResultText('Tie!');
       localStorage.setItem('score', score);
     } else {
       setScore(0);
       setResult('L');
+      setResultText('You lose!');
       localStorage.setItem('score', 0);
     }
-    return 'Draw';
-
   };
 
   const predict = async () => {
@@ -205,7 +213,7 @@ export default function Game() {
           </div>
         </div>
         <h1 className='text-black text-5xl whitespace-nowrap w-80'>
-          {result}
+          {resultText}
         </h1>
         <div className='w-1/2'>
           <div className='w-[400px] h-[400px]'>
